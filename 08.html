@@ -1,0 +1,1185 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>解碼股神巴菲特的千億帝國：波克夏 Q2 投資策略全解析</title>
+    <style>
+        /* --- 引入更豐富的 Google Fonts --- */
+        @import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&family=Merriweather:wght@400;700&family=Noto+Sans+TC:wght@400;500;700&family=Playfair+Display:wght@700;900&family=Roboto+Condensed:wght@700&display=swap');
+
+        /* --- 全域樣式與色彩系統優化 --- */
+        :root {
+            --primary-color: #1a3a6b;
+            --secondary-color: #c89600;
+            --background-color: #f8f9fa;
+            --text-color: #343a40;
+            --subtle-text-color: #5a6268;
+            --card-bg: #ffffff;
+            --light-gray: #e9ecef;
+            --accent-green: #2a9d8f;
+            --accent-red: #e76f51;
+            
+            /* -- 字體家族定義 -- */
+            --font-display: 'Playfair Display', serif;
+            --font-serif: 'Merriweather', serif;
+            --font-sans-condensed: 'Roboto Condensed', sans-serif;
+            --font-sans-body: 'Lato', 'Noto Sans TC', sans-serif;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: var(--font-sans-body);
+            background-color: var(--background-color);
+            color: var(--text-color);
+            line-height: 1.8;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 1.5rem;
+        }
+
+        /* --- 字體層級視覺化 --- */
+        h1 { 
+            font-family: var(--font-display);
+            font-size: 3.8rem; 
+            font-weight: 900;
+            color: white;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.3), 0 0 1px var(--secondary-color);
+            margin-bottom: 1.5rem;
+            text-align: center;
+            letter-spacing: 1.5px;
+        }
+        h2 { 
+            font-family: var(--font-display);
+            font-size: 3rem; 
+            font-weight: 700;
+            color: var(--primary-color);
+            margin-top: 4rem; 
+            margin-bottom: 2rem;
+            position: relative; 
+            padding-bottom: 1.5rem; 
+            text-align: center;
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 5px;
+            background: linear-gradient(to right, var(--secondary-color), #eeba30);
+            border-radius: 3px;
+        }
+        h3 { 
+            font-family: var(--font-sans-condensed);
+            font-size: 1.6rem; 
+            color: #004a8d; 
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            display: flex; 
+            align-items: center; 
+            gap: 12px;
+        }
+        h4 {
+            font-family: var(--font-serif);
+            font-size: 1.5rem;
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+        
+        p { color: var(--subtle-text-color); }
+        strong, .highlight { color: var(--primary-color); font-weight: 700; }
+        small { color: #6c757d; }
+
+        /* --- 動畫效果 --- */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s ease-in-out forwards;
+        }
+
+        /* --- 頂部控制按鈕 --- */
+        .top-controls-container {
+            position: absolute;
+            top: 25px;
+            right: 25px;
+            z-index: 1000;
+            display: flex;
+            gap: 12px;
+            flex-wrap: wrap;
+            justify-content: flex-end;
+        }
+        .top-button {
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.9);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            border-radius: 50px;
+            cursor: pointer;
+            font-family: var(--font-sans-condensed);
+            font-weight: bold;
+            transition: all 0.3s ease;
+            text-decoration: none;
+            font-size: 15px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        .top-button:hover {
+            background-color: var(--primary-color);
+            color: white;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        /* --- 頁首 --- */
+        header {
+            color: white;
+            padding: 6rem 2rem;
+            text-align: center;
+            border-bottom: 8px solid var(--secondary-color);
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(45deg, rgba(20, 40, 80, 0.6), rgba(10, 20, 40, 0.7));
+        }
+        #header-video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translateX(-50%) translateY(-50%);
+            z-index: -2;
+            opacity: 0.5;
+            filter: blur(2px);
+        }
+
+        /* --- 訪客計數器 --- */
+        .visitor-counter {
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            z-index: 1000;
+        }
+        .visitor-counter img {
+            background: rgba(255,255,255,0.7);
+            border-radius: 8px;
+            padding: 2px;
+        }
+
+        /* --- 第一部分：核心哲學 --- */
+        #philosophy .content {
+            display: grid;
+            grid-template-columns: 1fr 1.2fr;
+            gap: 3rem;
+            align-items: center;
+            margin-top: 2rem;
+        }
+        .quote { 
+            font-family: var(--font-display);
+            font-size: 3.2rem; 
+            font-weight: 900; 
+            color: var(--primary-color); 
+            text-align: center; 
+            padding: 2.5rem; 
+            border-left: 10px solid var(--secondary-color);
+            background: linear-gradient(to right, #ffffff, #f8f9fa);
+            line-height: 1.4;
+        }
+        .philosophy-cards { display: flex; flex-direction: column; gap: 1.5rem; }
+        .philosophy-card { 
+            background: var(--card-bg); 
+            padding: 2rem; 
+            border-radius: 12px; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.07); 
+            transition: transform 0.3s, box-shadow 0.3s; 
+            border-top: 4px solid var(--primary-color);
+        }
+        .philosophy-card:hover { transform: translateY(-8px); box-shadow: 0 10px 25px rgba(0,0,0,0.1); }
+        .philosophy-card h4 { text-align: left; }
+        .philosophy-card ul { list-style-type: none; padding-left: 5px; }
+        .philosophy-card ul li { margin-bottom: 0.8rem; position: relative; padding-left: 25px; }
+        .philosophy-card ul li::before {
+            content: '✓';
+            position: absolute;
+            left: 0;
+            color: var(--accent-green);
+            font-weight: bold;
+        }
+        
+        /* --- 第二部分：投資儀表板 --- */
+        .dashboard { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; margin-top: 2rem; }
+        .dashboard-card { 
+            background: var(--card-bg); 
+            padding: 2rem; 
+            border-radius: 12px; 
+            box-shadow: 0 6px 20px rgba(0,0,0,0.07); 
+            border-left: 6px solid; 
+            transition: all 0.3s ease; 
+        }
+        .dashboard-card:hover { transform: scale(1.03); box-shadow: 0 12px 30px rgba(0,0,0,0.12); }
+        .card-buy { border-color: var(--accent-green); }
+        .card-add { border-color: #17a2b8; }
+        .card-sell { border-color: var(--accent-red); }
+        .card-hold { border-color: var(--secondary-color); }
+
+        .sentiment-meter {
+            width: 150px;
+            height: 75px;
+            position: relative;
+            overflow: hidden;
+            margin: 1rem auto;
+        }
+        .sentiment-meter::before {
+            content: '';
+            position: absolute;
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            border: 20px solid var(--light-gray);
+            border-bottom-color: var(--accent-green);
+            border-left-color: var(--accent-green);
+            transform: rotate(-135deg);
+        }
+        .sentiment-meter-needle {
+            width: 2px;
+            height: 70px;
+            background: var(--primary-color);
+            position: absolute;
+            bottom: 5px;
+            left: 74px;
+            transform-origin: bottom;
+            transition: transform 1s ease-in-out;
+            transform: rotate(-45deg); /* 指向恐懼 */
+        }
+        .sentiment-labels { font-family: var(--font-sans-condensed); display: flex; justify-content: space-between; font-size: 0.8rem; font-weight: bold; padding: 0 10px; }
+
+        .flow-container { display: flex; justify-content: space-around; align-items: center; margin-top: 1rem; }
+        .flow-step { text-align: center; flex: 1; }
+        .flow-step .icon { font-size: 2.5rem; }
+        .flow-arrow { font-size: 2rem; color: #ccc; margin: 0 0.5rem;}
+        #japan-map { position: relative; text-align: center; font-size: 8rem; line-height: 1; color: #e0f2f1; margin-bottom: 1rem; }
+        .map-dot { position: absolute; width: 18px; height: 18px; background: var(--primary-color); border-radius: 50%; border: 3px solid white; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; box-shadow: 0 0 5px rgba(0,0,0,0.3); }
+        .map-dot:hover { transform: scale(1.6); box-shadow: 0 0 15px var(--primary-color); }
+        .tooltip { position: absolute; background: rgba(0,0,0,0.85); color: white; padding: 8px 12px; border-radius: 5px; font-size: 0.9rem; white-space: nowrap; opacity: 0; visibility: hidden; transition: opacity 0.3s; pointer-events: none; bottom: 160%; left: 50%; transform: translateX(-50%); }
+        .map-dot:hover .tooltip { opacity: 1; visibility: visible; }
+        #dot-mitsui { top: 40%; left: 60%; }
+        #dot-mitsubishi { top: 50%; left: 55%; }
+        #dot-itochu { top: 60%; left: 50%; }
+        #dot-sumitomo { top: 55%; left: 65%; }
+        #dot-marubeni { top: 45%; left: 48%; }
+        .bar-chart-container { margin-top: 1rem; }
+        .bar-item { margin-bottom: 1rem; }
+        .bar-label { display: flex; justify-content: space-between; font-size: 0.9rem; margin-bottom: 0.3rem; }
+        .bar-label span:first-child { font-weight: bold; }
+        .bar { height: 28px; background: var(--light-gray); border-radius: 5px; overflow: hidden; }
+        .bar > div { height: 100%; background: linear-gradient(to right, #f08080, var(--accent-red)); width: 0; transition: width 1.2s ease-out; }
+        .donut-chart-container { display: flex; align-items: center; gap: 2rem; margin-top: 1rem; }
+        .donut-chart { position: relative; width: 160px; height: 160px; }
+        .donut-chart svg { transform: rotate(-90deg); }
+        .donut-chart circle { fill: transparent; transition: all 0.4s ease-out; }
+        .donut-chart .bg { stroke: var(--light-gray); }
+        .donut-chart-text { position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 1.8rem; font-family: var(--font-sans-condensed); font-weight: 700; color: var(--primary-color); opacity: 0; transition: opacity 0.3s; }
+        .legend ul { list-style-type: none; }
+        .legend li { display: flex; align-items: center; margin-bottom: 0.7rem; cursor: pointer; transition: all 0.2s; padding: 5px; border-radius: 5px; }
+        .legend li:hover { font-weight: 700; background-color: var(--light-gray); }
+        .legend-dot { width: 14px; height: 14px; border-radius: 50%; margin-right: 12px; }
+
+        /* --- 第三部分：投資啟示 --- */
+        .takeaway-cards-container { display: grid; grid-template-columns: repeat(3, 1fr); gap: 2rem; perspective: 1200px; }
+        .takeaway-card { background-color: transparent; height: 280px; cursor: pointer; }
+        .takeaway-card-inner { position: relative; width: 100%; height: 100%; transform-style: preserve-3d; transition: transform 0.7s cubic-bezier(0.4, 0.2, 0.2, 1); }
+        .takeaway-card:hover .takeaway-card-inner { transform: rotateY(180deg); }
+        .card-face { position: absolute; width: 100%; height: 100%; backface-visibility: hidden; border-radius: 15px; padding: 2rem; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; box-shadow: 0 8px 25px rgba(0,0,0,0.1); }
+        .card-front { background: linear-gradient(135deg, var(--primary-color), #002244); color: white; }
+        .card-front h4 { color: white; font-family: var(--font-display); font-size: 1.8rem; }
+        .card-back { background: var(--card-bg); transform: rotateY(180deg); border: 1px solid var(--light-gray); }
+        .card-back h4 { font-family: var(--font-serif); }
+        .card-back .example-link { font-size: 0.8rem; color: var(--secondary-color); margin-top: 1rem; font-weight: 700; text-decoration: none; border-bottom: 2px solid transparent; transition: border-color 0.3s; }
+        .card-back .example-link:hover { border-color: var(--secondary-color); }
+        
+        /* --- 影片摘要區塊 --- */
+        #video-summary {
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-top: 4rem;
+        }
+        .videos-wrapper {
+            display: flex;
+            gap: 2rem;
+            margin: 2rem 0;
+        }
+        .video-container {
+            flex: 1; 
+            position: relative;
+            width: 100%;
+            padding-bottom: 56.25%; 
+            height: 0;
+            overflow: hidden;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: 0;
+        }
+        .video-annotation {
+            font-size: 1rem;
+            color: #6c757d;
+            text-align: center;
+            margin-top: 1.5rem;
+            line-height: 1.7;
+        }
+        
+        /* --- 第四部分：未來展望 --- */
+        .timeline { position: relative; width: 90%; margin: 3rem auto; padding: 2rem 0; }
+        .timeline::before { content: ''; position: absolute; top: 50%; left: 0; width: 100%; height: 5px; background: var(--light-gray); border-radius: 3px; transform: translateY(-50%); }
+        .timeline-item { position: relative; display: inline-block; width: 49%; text-align: center; vertical-align: middle; }
+        .timeline-item::after { content: ''; position: absolute; top: 50%; width: 24px; height: 24px; background: var(--card-bg); border: 5px solid var(--secondary-color); border-radius: 50%; transform: translateY(-50%); z-index: 1; }
+        .timeline-item:nth-child(1) { float: left; }
+        .timeline-item:nth-child(1)::after { right: -12px; }
+        .timeline-item:nth-child(2) { float: right; }
+        .timeline-item:nth-child(2)::after { left: -12px; }
+        .timeline h4 { font-size: 1.5rem; }
+        .poll-container { clear: both; padding-top: 4rem; text-align: center; }
+        .poll-container h4 { font-family: var(--font-serif); }
+        .poll-buttons { margin: 1.5rem 0; }
+        .poll-buttons button { background: var(--primary-color); color: white; border: none; padding: 12px 25px; margin: 0 10px; border-radius: 50px; cursor: pointer; transition: all 0.3s; font-size: 1rem; font-family: var(--font-sans-condensed); font-weight: bold; }
+        .poll-buttons button:hover { background-color: #00509e; transform: translateY(-2px); }
+        .poll-buttons button:disabled { background-color: #ccc; cursor: not-allowed; transform: none; }
+        .poll-results { width: 90%; max-width: 600px; margin: 2rem auto; text-align: left; }
+        .poll-result-bar-container { background: var(--light-gray); border-radius: 8px; margin-bottom: 0.8rem; overflow: hidden; }
+        .poll-result-bar { height: 24px; border-radius: 8px; width: 0%; transition: width 1s ease-in-out; color: white; font-size: 0.9rem; text-align: right; padding-right: 8px; line-height: 24px; font-weight: bold; }
+        #bar-yes { background: linear-gradient(to right, #56ab2f, #a8e063); }
+        #bar-no { background: linear-gradient(to right, #e53935, #e35d5b); }
+        .poll-summary { margin-top: 2rem; font-style: italic; color: #555; }
+        
+        /* --- 語音摘要區塊樣式 --- */
+        #audio-summary-section {
+            background-color: var(--card-bg);
+            padding: 3rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+            margin-top: 4rem;
+        }
+        .audio-list-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .audio-list-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            background-color: var(--background-color);
+            padding: 1rem 1.5rem;
+            border-radius: 10px;
+            border-left: 5px solid var(--primary-color);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .audio-list-item:hover {
+            box-shadow: 0 5px 15px rgba(0,0,0,0.07);
+            transform: translateY(-3px);
+        }
+        .play-pause-btn {
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            border: none;
+            cursor: pointer;
+            background-color: var(--primary-color);
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background-color 0.3s;
+        }
+        .play-pause-btn:hover {
+            background-color: #00509e;
+        }
+        .play-pause-btn svg {
+            width: 22px;
+            height: 22px;
+        }
+        .play-pause-btn .pause-icon {
+            display: none;
+        }
+        .play-pause-btn.playing .play-icon {
+            display: none;
+        }
+        .play-pause-btn.playing .pause-icon {
+            display: block;
+        }
+        .audio-title {
+            font-weight: 500;
+            color: var(--text-color);
+        }
+
+        footer {
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 4rem;
+            border-top: 1px solid var(--light-gray);
+            color: var(--subtle-text-color);
+            font-size: 0.9rem;
+        }
+        footer p {
+            color: inherit;
+        }
+
+        /* --- 回到頂部按鈕 --- */
+        .back-to-top-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 999;
+            width: 50px;
+            height: 50px;
+            background-color: var(--primary-color);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(20px);
+            transition: opacity 0.3s ease, visibility 0.3s ease, transform 0.3s ease, background-color 0.3s ease;
+            text-decoration: none;
+        }
+        .back-to-top-btn.show {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+        .back-to-top-btn:hover {
+            background-color: var(--secondary-color);
+            transform: translateY(-3px);
+        }
+
+        /* --- 響應式設計 --- */
+        @media (max-width: 992px) {
+            h1 { font-size: 3rem; }
+            h2 { font-size: 2.5rem; }
+            .dashboard, .takeaway-cards-container { grid-template-columns: 1fr; }
+            .takeaway-card { margin-bottom: 2rem; }
+            #philosophy .content { grid-template-columns: 1fr; }
+            .quote { text-align: center; border-left: none; border-top: 8px solid var(--secondary-color); font-size: 2.5rem; }
+        }
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2.2rem; }
+            .flow-container { flex-direction: column; gap: 1.5rem; }
+            .flow-arrow { display: none; }
+            .donut-chart-container { flex-direction: column; }
+            .top-controls-container { top: 15px; right: 15px; }
+            .visitor-counter { top: 15px; left: 15px; }
+            .timeline { width: 100%; }
+            .timeline-item { width: 100%; float: none !important; margin-bottom: 3rem; }
+            .timeline-item::after { left: 50% !important; right: auto !important; transform: translate(-50%, -50%) !important; top: -1.5rem !important;}
+            .timeline::before { left: 50%; width: 5px; height: 100%; top: 0; transform: translateX(-50%); }
+            .back-to-top-btn { width: 45px; height: 45px; bottom: 20px; right: 20px; }
+            .videos-wrapper {
+                flex-direction: column;
+            }
+            .audio-list-container {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <video autoplay loop muted playsinline id="header-video">
+            <source src="https://ping763573.github.io/Bami/01.mp4" type="video/mp4">
+            您的瀏覽器不支援影片標籤。
+        </video>
+
+        <div class="visitor-counter">
+            <a href="https://www.hitwebcounter.com" target="_blank">
+            <img src="https://hitwebcounter.com/counter/counter.php?page=21405466&style=0001&nbdigits=5&type=page&initCount=1000" title="Counter Widget" Alt="Visit counter For Websites" border="0" /></a>
+        </div>
+
+        <div class="top-controls-container">
+            <a href="#" id="home-btn" class="top-button" data-lang-key="homeButton">首頁</a>
+            <a href="https://gemini.google.com/share/0f888dba2aa8" target="_blank" rel="noopener noreferrer" class="top-button" id="storybook-btn" data-lang-key="storybookButton">巴菲特故事書</a>
+            <a href="https://ping763573.github.io/Bami/05.html" target="_blank" rel="noopener noreferrer" class="top-button" id="map-btn" data-lang-key="mapButton">波克夏 Q2 投資版圖</a>
+            <a href="#video-summary" class="top-button" id="video-summary-btn" data-lang-key="videoSummaryButton">巴菲特動畫視頻</a>
+            <a href="#audio-summary-section" class="top-button" data-lang-key="voiceSummaryButton">語音摘要</a>
+            <button class="top-button" id="audio-toggle" data-lang-key="audioButton">互動語音</button>
+            <button class="top-button" id="lang-toggle">English</button>
+        </div>
+        
+        <div class="container">
+            <h1 data-lang-key="headerTitle">解碼股神巴菲特的千億帝國：波克夏 Q2 投資策略全解析</h1>
+        </div>
+    </header>
+
+    <main class="container">
+        <!-- Section 1: Philosophy -->
+        <section id="philosophy" class="fade-in">
+            <h2 data-lang-key="philosophyTitle">核心投資哲學－巴菲特的智慧羅盤</h2>
+            <div class="content">
+                <div class="quote" data-lang-key="philosophyQuote">「別人恐懼時我貪婪，別人貪婪時我恐懼」</div>
+                <div class="philosophy-cards">
+                    <div class="philosophy-card">
+                        <h4 data-lang-key="philosophyCard1Title">三大智慧基石</h4>
+                        <ul data-lang-key="philosophyCard1List">
+                            <li><strong>價值投資：</strong>尋找價格低於其內在價值的好公司。</li>
+                            <li><strong>長期主義：</strong>買入並耐心持有，與優秀的企業共同成長。</li>
+                            <li><strong>風險意識：</strong>安全邊際是最高原則，避免永久性的資本虧損。</li>
+                        </ul>
+                    </div>
+                    <div class="philosophy-card">
+                        <h4 data-lang-key="philosophyCard2Title">經典案例：2011 歐債危機</h4>
+                        <p data-lang-key="philosophyCard2Text">當全球市場因歐債危機而恐慌時，巴菲特反其道而行，大舉投資美國銀行等金融機構，最終獲得了豐厚的回報，完美印證其投資哲學。</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 2: Portfolio Moves -->
+        <section id="portfolio-moves" class="fade-in">
+            <h2 data-lang-key="dashboardTitle">Q2 投資組合波動一覽 — 錢都流向哪裡了？</h2>
+            <div class="dashboard">
+                <div class="dashboard-card card-buy">
+                    <h3><span class="icon">📈</span> <span data-lang-key="dashboardBuyTitle">逆勢買進 — 在恐懼中尋找黃金</span></h3>
+                    <p data-lang-key="dashboardBuyCase"><strong>主打案例：聯合健康 (UnitedHealth, UNH)</strong></p>
+                    <div class="sentiment-meter">
+                        <div class="sentiment-meter-needle"></div>
+                    </div>
+                    <div class="sentiment-labels">
+                        <span data-lang-key="sentimentFear">極度恐懼</span>
+                        <span data-lang-key="sentimentGreed">極度貪婪</span>
+                    </div>
+                    <p style="text-align:center; font-size: 0.9rem; margin-top: 0.5rem;" data-lang-key="buyNote">市場因醫療成本上升而恐慌，巴菲特卻看到長期價值。</p>
+                </div>
+
+                <div class="dashboard-card card-add">
+                    <h3><span class="icon">🌏</span> <span data-lang-key="dashboardAddTitle">持續加碼 — 放眼全球的國際視野</span></h3>
+                    <p data-lang-key="dashboardAddCase"><strong>主打案例：日本五大商社</strong></p>
+                    <div id="japan-map">🗾
+                        <div id="dot-mitsui" class="map-dot"><div class="tooltip" data-lang-key="mapTooltip1">三井物產 (8031)<br>增持 3,535萬股</div></div>
+                        <div id="dot-mitsubishi" class="map-dot"><div class="tooltip" data-lang-key="mapTooltip2">三菱商事 (8058)<br>增持 3,055萬股</div></div>
+                        <div id="dot-itochu" class="map-dot"><div class="tooltip" data-lang-key="mapTooltip3">伊藤忠商事 (8001)<br>增持 1,691萬股</div></div>
+                        <div id="dot-sumitomo" class="map-dot"><div class="tooltip" data-lang-key="mapTooltip4">住友商事 (8053)<br>增持 1,124萬股</div></div>
+                        <div id="dot-marubeni" class="map-dot"><div class="tooltip" data-lang-key="mapTooltip5">丸紅 (8002)<br>增持 1,347萬股</div></div>
+                    </div>
+                    <p><small data-lang-key="dashboardAddOther"><strong>其他加碼：</strong>雪佛龍(CVX)、西方石油(OXY)、萊納建築(LEN)等。</small></p>
+                </div>
+
+                <div class="dashboard-card card-sell">
+                    <h3><span class="icon">⚖️</span> <span data-lang-key="dashboardSellTitle">策略性減持 — 聰明的風險管理</span></h3>
+                    <p data-lang-key="dashboardSellCase"><strong>主打案例：蘋果 (AAPL) & 美國銀行 (BAC)</strong></p>
+                    <div class="bar-chart-container">
+                        <div class="bar-item">
+                            <div class="bar-label"><span>蘋果 (AAPL)</span><span data-lang-key="sellLabel1">減持 2,000萬股</span></div>
+                            <div class="bar"><div id="bar-aapl"></div></div>
+                        </div>
+                        <div class="bar-item">
+                            <div class="bar-label"><span>美國銀行 (BAC)</span><span data-lang-key="sellLabel2">減持 2,630萬股</span></div>
+                            <div class="bar"><div id="bar-bac"></div></div>
+                        </div>
+                    </div>
+                    <p><small data-lang-key="dashboardSellNote"><strong>註：</strong>這不代表變心，而是資產再平衡！適度賣出以鎖定獲利並降低集中風險。</small></p>
+                </div>
+                
+                <div class="dashboard-card card-hold">
+                    <h3><span class="icon">🏰</span> <span data-lang-key="dashboardHoldTitle">核心持股 — 歷久不變的信仰</span></h3>
+                    <p data-lang-key="dashboardHoldDesc"><strong>前五大持股佔比極高，且多數核心持股本季0變動。</strong></p>
+                    <div class="donut-chart-container">
+                         <div class="donut-chart">
+                            <div class="donut-chart-text"></div>
+                            <svg width="160" height="160" viewBox="0 0 42 42">
+                                <circle class="bg" cx="21" cy="21" r="15.9155" stroke-width="5"></circle>
+                                <circle id="circle-apple" data-slice="apple" cx="21" cy="21" r="15.9155" stroke-width="5" stroke="#D8BFD8"></circle>
+                                <circle id="circle-amex" data-slice="amex" cx="21" cy="21" r="15.9155" stroke-width="5" stroke="#ADD8E6"></circle>
+                                <circle id="circle-boa" data-slice="boa" cx="21" cy="21" r="15.9155" stroke-width="5" stroke="#90EE90"></circle>
+                                <circle id="circle-coke" data-slice="coke" cx="21" cy="21" r="15.9155" stroke-width="5" stroke="#FFFACD"></circle>
+                                <circle id="circle-other" data-slice="other" cx="21" cy="21" r="15.9155" stroke-width="5" stroke="#FFB6C1"></circle>
+                            </svg>
+                        </div>
+                        <div class="legend">
+                            <ul>
+                                <li data-slice="apple" data-percent="22%"><span class="legend-dot" style="background-color: #D8BFD8;"></span>Apple (22%)</li>
+                                <li data-slice="amex" data-percent="16%"><span class="legend-dot" style="background-color: #ADD8E6;"></span>American Express (16%)</li>
+                                <li data-slice="boa" data-percent="10%"><span class="legend-dot" style="background-color: #90EE90;"></span>Bank of America (10%)</li>
+                                <li data-slice="coke" data-percent="10%"><span class="legend-dot" style="background-color: #FFFACD;"></span>Coca-Cola (10%)</li>
+                                <li data-slice="other" data-percent="42%"><span class="legend-dot" style="background-color: #FFB6C1;" data-lang-key="holdOther"></span>其他 (42%)</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <p><small data-lang-key="dashboardHoldConclusion"><strong>結論：</strong>這些公司是波克夏的基石，展現對其強大護城河的堅定信心。</small></p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Section 3: Takeaways -->
+        <section id="takeaways" class="fade-in">
+            <h2 data-lang-key="takeawaysTitle">三大投資啟示 — 我們能從股神身上學到什麼？</h2>
+            <div class="takeaway-cards-container">
+                <div class="takeaway-card">
+                    <div class="takeaway-card-inner">
+                        <div class="card-face card-front">
+                            <h4 data-lang-key="takeaway1Front">當市場恐慌時，<br>你該怎麼辦？</h4>
+                        </div>
+                        <div class="card-face card-back">
+                            <h4 data-lang-key="takeaway1BackTitle">別怕市場雜音，專注公司價值。</h4>
+                            <p data-lang-key="takeaway1BackText">如同波克夏本次買入聯合健康，當好公司遇到短期利空時，正是價值浮現的時刻。</p>
+                            <a href="#portfolio-moves" class="example-link" data-lang-key="caseLink1">案例連結：逆勢買進</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-card-inner">
+                        <div class="card-face card-front">
+                            <h4 data-lang-key="takeaway2Front">什麼樣的股票<br>值得你長相廝守？</h4>
+                        </div>
+                        <div class="card-face card-back">
+                            <h4 data-lang-key="takeaway2BackTitle">找到你的「壓箱寶」，並耐心持有。</h4>
+                            <p data-lang-key="takeaway2BackText">可口可樂、美國運通數十年來都是波克夏的核心持股，證明了與偉大企業一同成長的力量。</p>
+                             <a href="#portfolio-moves" class="example-link" data-lang-key="caseLink2">案例連結：核心持股</a>
+                        </div>
+                    </div>
+                </div>
+                <div class="takeaway-card">
+                    <div class="takeaway-card-inner">
+                        <div class="card-face card-front">
+                            <h4 data-lang-key="takeaway3Front">漲了很多的績優股，<br>該賣嗎？</h4>
+                        </div>
+                        <div class="card-face card-back">
+                            <h4 data-lang-key="takeaway3BackTitle">再好的股票，也要懂得調整與平衡。</h4>
+                            <p data-lang-key="takeaway3BackText">本次減持蘋果，提醒我們適時進行資產再平衡，鎖定獲利並管理風險，是長期成功的關鍵。</p>
+                            <a href="#portfolio-moves" class="example-link" data-lang-key="caseLink3">案例連結：策略性減持</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="video-summary" class="fade-in">
+            <h2 data-lang-key="videoSummaryTitle">巴菲特動畫視頻摘要</h2>
+            <div class="videos-wrapper">
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/Kkp-l17j7A8" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+                <div class="video-container">
+                    <iframe src="https://www.youtube.com/embed/T15SNwr3Xfw" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>
+                </div>
+            </div>
+            <p class="video-annotation" data-lang-key="videoAnnotation">
+                此處為巴菲特相關投資思維的動畫視頻，其為英文發音，若要有中文字幕請於YT播放器設定中點擊字幕，再點自動翻譯即可。
+            </p>
+        </section>
+
+        <!-- Section 4: Future Outlook -->
+        <section id="future-outlook" class="fade-in">
+            <h2 data-lang-key="futureTitle">展望未來－後巴菲特時代的波克夏</h2>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <h4>1965 - 2024</h4>
+                    <p data-lang-key="timeline1">巴菲特與孟格的傳奇時代</p>
+                </div>
+                <div class="timeline-item">
+                    <h4>2025 年底</h4>
+                    <p data-lang-key="timeline2">阿貝爾 (Greg Abel) 接棒，開啟新篇章</p>
+                </div>
+            </div>
+            <div class="poll-container">
+                <h4 data-lang-key="pollTitle">你的看法是？</h4>
+                <p data-lang-key="pollQuestion">你認為在阿貝爾的領導下，波克夏能否延續巴菲特的價值投資哲學？</p>
+                <div class="poll-buttons">
+                    <button id="vote-yes" data-lang-key="pollBtnYes">能，核心文化不變</button>
+                    <button id="vote-no" data-lang-key="pollBtnNo">難，個人風格將帶來改變</button>
+                </div>
+                <div class="poll-results">
+                    <div class="poll-result-item">
+                        <span data-lang-key="pollResultYes">能 (<span id="count-yes">0</span>)</span>
+                        <div class="poll-result-bar-container"><div id="bar-yes" class="poll-result-bar"></div></div>
+                    </div>
+                    <div class="poll-result-item">
+                        <span data-lang-key="pollResultNo">難 (<span id="count-no">0</span>)</span>
+                        <div class="poll-result-bar-container"><div id="bar-no" class="poll-result-bar"></div></div>
+                    </div>
+                </div>
+                <p class="poll-summary" data-lang-key="pollSummary">無論結果如何，波克夏龐大的現金儲備和深植的企業文化，都將是其未來發展的堅實基礎。</p>
+            </div>
+        </section>
+        
+        <section id="audio-summary-section" class="fade-in">
+            <h2 data-lang-key="audioLibraryTitle">語音摘要庫</h2>
+            <div class="audio-list-container">
+                <div class="audio-list-item">
+                    <button class="play-pause-btn" data-src="https://ping763573.github.io/Bami/03.m4a">
+                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+                        <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+                    </button>
+                    <span class="audio-title" data-lang-key="summarySubButton1">巴菲特「股神」操盤再揭密</span>
+                </div>
+                <div class="audio-list-item">
+                    <button class="play-pause-btn" data-src="https://ping763573.github.io/Bami/04.m4a">
+                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+                        <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+                    </button>
+                    <span class="audio-title" data-lang-key="summarySubButton2">巴菲特逆勢操作</span>
+                </div>
+                <div class="audio-list-item">
+                    <button class="play-pause-btn" data-src="https://ping763573.github.io/Bami/06.wav">
+                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+                        <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+                    </button>
+                    <span class="audio-title" data-lang-key="summarySubButton3">巴菲特人生最佳投資</span>
+                </div>
+                <div class="audio-list-item">
+                    <button class="play-pause-btn" data-src="https://ping763573.github.io/Bami/07.wav">
+                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+                        <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+                    </button>
+                    <span class="audio-title" data-lang-key="summarySubButton4">2025年波克夏股東大會精華摘要</span>
+                </div>
+                <!-- 【修改 1】為Google Drive連結添加 data-link-type 屬性，並使用分享連結 -->
+                <div class="audio-list-item">
+                    <button class="play-pause-btn" data-link-type="external" data-src="https://drive.google.com/file/d/1Kw9CfyI81XEAn9e4mT2L0cS573R5LAre/view?usp=sharing">
+                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+                        <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+                    </button>
+                    <span class="audio-title" data-lang-key="summarySubButton5">巴菲特護城河理論</span>
+                </div>
+                <div class="audio-list-item">
+                    <button class="play-pause-btn" data-link-type="external" data-src="https://drive.google.com/file/d/1hvBk7oEPEy96yUdXiuegllmdbI-KtVPB/view?usp=sharing">
+                        <svg class="play-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M8 5v14l11-7z"></path></svg>
+                        <svg class="pause-icon" viewBox="0 0 24 24" fill="currentColor"><path d="M6 19h4V5H6v14zm8-14v14h4V5h-4z"></path></svg>
+                    </button>
+                    <span class="audio-title" data-lang-key="summarySubButton6">價值投資致勝心法</span>
+                </div>
+            </div>
+        </section>
+
+    </main>
+    
+    <a href="#" id="back-to-top-btn" class="back-to-top-btn" title="回到頂部">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M12 19V5M5 12l7-7 7 7"/>
+        </svg>
+    </a>
+
+    <audio id="interactive-audio" src="https://ping763573.github.io/Bami/02.wav"></audio>
+    <audio id="main-audio-player"></audio>
+
+    <footer>
+        <p>作者:Ping 初版 2025.08.16</p>
+    </footer>
+
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+
+        // --- 語言資料庫 ---
+        const languageData = {
+            headerTitle: {
+                zh: '解碼股神巴菲特的千億帝國：波克夏 Q2 投資策略全解析',
+                en: "Unpacking Buffett's Billions: A Deep Dive into Berkshire's Q2 Investment Strategy"
+            },
+            homeButton: { zh: '首頁', en: 'Home' },
+            storybookButton: { zh: '巴菲特故事書', en: 'Buffett Storybook' },
+            mapButton: { zh: '波克夏 Q2 投資版圖', en: 'Berkshire Q2 Investment Map' },
+            videoSummaryButton: { zh: '巴菲特動畫視頻', en: 'Buffett Animation Videos' },
+            voiceSummaryButton: { zh: '語音摘要', en: 'Voice Summary' },
+            audioButton: { zh: '互動語音', en: 'Interactive Audio' },
+            audioLibraryTitle: { zh: '語音摘要庫', en: 'Audio Summary Library' },
+            summarySubButton1: { zh: '巴菲特「股神」操盤再揭密', en: 'Buffett\'s Master Plan Revealed' },
+            summarySubButton2: { zh: '巴菲特逆勢操作', en: 'Buffett\'s Contrarian Moves' },
+            summarySubButton3: { zh: '巴菲特人生最佳投資', en: 'Buffett\'s Best Life Investment' },
+            summarySubButton4: { zh: '2025年波克夏股東大會精華摘要', en: '2025 Berkshire Meeting Highlights' },
+            summarySubButton5: { zh: '巴菲特護城河理論', en: 'Buffett\'s Moat Theory' },
+            summarySubButton6: { zh: '價值投資致勝心法', en: 'Value Investing: The Winning Mindset' },
+            philosophyTitle: {
+                zh: '核心投資哲學－巴菲特的智慧羅盤',
+                en: "Core Philosophy - Buffett's Wisdom Compass"
+            },
+            philosophyQuote: {
+                zh: '「別人恐懼時我貪婪，別人貪婪時我恐懼」',
+                en: '"Be fearful when others are greedy, and greedy when others are fearful."'
+            },
+            philosophyCard1Title: {
+                zh: '三大智慧基石',
+                en: 'Three Pillars of Wisdom'
+            },
+            philosophyCard1List: {
+                zh: '<li><strong>價值投資：</strong>尋找價格低於其內在價值的好公司。</li><li><strong>長期主義：</strong>買入並耐心持有，與優秀的企業共同成長。</li><li><strong>風險意識：</strong>安全邊際是最高原則，避免永久性的資本虧損。</li>',
+                en: '<li><strong>Value Investing:</strong> Find good companies priced below their intrinsic value.</li><li><strong>Long-Termism:</strong> Buy and hold patiently, growing with excellent businesses.</li><li><strong>Risk Awareness:</strong> The margin of safety is paramount to avoid permanent capital loss.</li>'
+            },
+            philosophyCard2Title: {
+                zh: '經典案例：2011 歐債危機',
+                en: 'Classic Case: 2011 European Debt Crisis'
+            },
+            philosophyCard2Text: {
+                zh: '當全球市場因歐債危機而恐慌時，巴菲特反其道而行，大舉投資美國銀行等金融機構，最終獲得了豐厚的回報，完美印證其投資哲學。',
+                en: 'During the 2011 European debt crisis, Buffett went against the crowd, investing heavily in financial institutions like Bank of America and reaping substantial rewards, perfectly validating his philosophy.'
+            },
+            dashboardTitle: {
+                zh: 'Q2 投資組合波動一覽 — 錢都流向哪裡了？',
+                en: "Q2 Portfolio Snapshot — Where Did the Money Go?"
+            },
+            dashboardBuyTitle: {
+                zh: '逆勢買進 — 在恐懼中尋找黃金',
+                en: 'Contrarian Buy — Finding Gold in Fear'
+            },
+            dashboardBuyCase: {
+                zh: '<strong>主打案例：聯合健康 (UnitedHealth, UNH)</strong>',
+                en: '<strong>Featured Case: UnitedHealth (UNH)</strong>'
+            },
+            buyNote: {
+                zh: '市場因醫療成本上升而恐慌，巴菲特卻看到長期價值。',
+                en: 'Market panicked over rising medical costs, but Buffett saw long-term value.'
+            },
+            sentimentFear: { zh: '極度恐懼', en: 'Extreme Fear' },
+            sentimentGreed: { zh: '極度貪婪', en: 'Extreme Greed' },
+            dashboardAddTitle: {
+                zh: '持續加碼 — 放眼全球的國際視野',
+                en: 'Increasing Stakes — A Global Outlook'
+            },
+            dashboardAddCase: {
+                zh: '<strong>主打案例：日本五大商社</strong>',
+                en: '<strong>Featured Case: Five Major Japanese Trading Houses</strong>'
+            },
+            mapTooltip1: { zh: '三井物產 (8031)<br>增持 3,535萬股', en: 'Mitsui & Co. (8031)<br>Added 35.35M shares' },
+            mapTooltip2: { zh: '三菱商事 (8058)<br>增持 3,055萬股', en: 'Mitsubishi Corp. (8058)<br>Added 30.55M shares' },
+            mapTooltip3: { zh: '伊藤忠商事 (8001)<br>增持 1,691萬股', en: 'Itochu Corp. (8001)<br>Added 16.91M shares' },
+            mapTooltip4: { zh: '住友商事 (8053)<br>增持 1,124萬股', en: 'Sumitomo Corp. (8053)<br>Added 11.24M shares' },
+            mapTooltip5: { zh: '丸紅 (8002)<br>增持 1,347萬股', en: 'Marubeni Corp. (8002)<br>Added 13.47M shares' },
+            dashboardAddOther: {
+                zh: '<strong>其他加碼：</strong>雪佛龍(CVX)、西方石油(OXY)、萊納建築(LEN)等。',
+                en: '<strong>Other Additions:</strong> Chevron (CVX), Occidental Petroleum (OXY), Lennar (LEN), etc.'
+            },
+            dashboardSellTitle: {
+                zh: '策略性減持 — 聰明的風險管理',
+                en: 'Strategic Trim — Smart Risk Management'
+            },
+            dashboardSellCase: {
+                zh: '<strong>主打案例：蘋果 (AAPL) & 美國銀行 (BAC)</strong>',
+                en: '<strong>Featured Case: Apple (AAPL) & Bank of America (BAC)</strong>'
+            },
+            sellLabel1: { zh: '減持 2,000萬股', en: 'Sold 20M shares' },
+            sellLabel2: { zh: '減持 2,630萬股', en: 'Sold 26.3M shares' },
+            dashboardSellNote: {
+                zh: '<strong>註：</strong>這不代表變心，而是資產再平衡！適度賣出以鎖定獲利並降低集中風險。',
+                en: '<strong>Note:</strong> Not a loss of faith, but portfolio rebalancing! A smart move to lock in profits and manage concentration risk.'
+            },
+            dashboardHoldTitle: {
+                zh: '核心持股 — 歷久不變的信仰',
+                en: 'Core Holdings — The Unchanging Bedrock'
+            },
+            dashboardHoldDesc: {
+                zh: '<strong>前五大持股佔比極高，且多數核心持股本季0變動。</strong>',
+                en: '<strong>Top 5 holdings are highly concentrated, and most core positions remained unchanged this quarter.</strong>'
+            },
+            holdOther: {
+                zh: '其他 (42%)',
+                en: 'Other (42%)'
+            },
+            dashboardHoldConclusion: {
+                zh: '<strong>結論：</strong>這些公司是波克夏的基石，展現對其強大護城河的堅定信心。',
+                en: '<strong>Conclusion:</strong> These companies form the bedrock of the portfolio, showing unwavering confidence in their strong economic moats.'
+            },
+            takeawaysTitle: {
+                zh: '三大投資啟示 — 我們能從股神身上學到什麼？',
+                en: 'Three Key Takeaways — Lessons from the Master'
+            },
+            takeaway1Front: { zh: '當市場恐慌時，<br>你該怎麼辦？', en: 'What should you do<br>when the market panics?' },
+            takeaway1BackTitle: { zh: '別怕市場雜音，專注公司價值。', en: 'Ignore market noise, focus on value.' },
+            takeaway1BackText: {
+                zh: '如同波克夏本次買入聯合健康，當好公司遇到短期利空時，正是價值浮現的時刻。',
+                en: "Like Berkshire's UnitedHealth purchase, when a great company faces short-term headwinds, it's often when value appears."
+            },
+            caseLink1: { zh: '案例連結：逆勢買進', en: 'Case Link: Contrarian Buy'},
+            takeaway2Front: { zh: '什麼樣的股票<br>值得你長相廝守？', en: 'What kind of stock<br>is worth holding forever?' },
+            takeaway2BackTitle: { zh: '找到你的「壓箱寶」，並耐心持有。', en: 'Find your "crown jewels" and hold them patiently.' },
+            takeaway2BackText: {
+                zh: '可口可樂、美國運通數十年來都是波克夏的核心持股，證明了與偉大企業一同成長的力量。',
+                en: 'Coca-Cola and American Express have been core holdings for decades, proving the power of growing with great businesses.'
+            },
+            caseLink2: { zh: '案例連結：核心持股', en: 'Case Link: Core Holdings'},
+            takeaway3Front: { zh: '漲了很多的績優股，<br>該賣嗎？', en: 'Should you sell a great stock<br>after it has run up?' },
+            takeaway3BackTitle: { zh: '再好的股票，也要懂得調整與平衡。', en: 'Even the best stocks require trimming and balancing.' },
+            takeaway3BackText: {
+                zh: '本次減持蘋果，提醒我們適時進行資產再平衡，鎖定獲利並管理風險，是長期成功的關鍵。',
+                en: "This quarter's Apple trim reminds us that rebalancing, taking profits, and managing risk are keys to long-term success."
+            },
+            caseLink3: { zh: '案例連結：策略性減持', en: 'Case Link: Strategic Trim'},
+            videoSummaryTitle: { zh: '巴菲特動畫視頻摘要', en: 'Buffett Animation Video Summary' },
+            videoAnnotation: {
+                zh: '此處為巴菲特相關投資思維的動畫視頻，其為英文發音，若要有中文字幕請於YT播放器設定中點擊字幕，再點自動翻譯即可。',
+                en: 'These are animated videos on Buffett\'s investment philosophy. For subtitles in your language, please enable captions in the YouTube player settings and use the auto-translate feature.'
+            },
+            futureTitle: { zh: '展望未來－後巴菲特時代的波克夏', en: 'The Future — Berkshire in the Post-Buffett Era' },
+            timeline1: { zh: '巴菲特與孟格的傳奇時代', en: 'The Legendary Era of Buffett & Munger' },
+            timeline2: { zh: '阿貝爾 (Greg Abel) 接棒，開啟新篇章', en: 'Greg Abel Takes the Helm, a New Chapter Begins' },
+            pollTitle: { zh: '你的看法是？', en: 'What Do You Think?' },
+            pollQuestion: {
+                zh: '你認為在阿貝爾的領導下，波克夏能否延續巴菲特的價值投資哲學？',
+                en: "Under Abel's leadership, do you think Berkshire can continue Buffett's value investing philosophy?"
+            },
+            pollBtnYes: { zh: '能，核心文化不變', en: 'Yes, the core culture remains' },
+            pollBtnNo: { zh: '難，個人風格將帶來改變', en: 'No, his personal style will bring changes' },
+            pollResultYes: { zh: '能', en: 'Yes' },
+            pollResultNo: { zh: '難', en: 'No' },
+            pollSummary: {
+                zh: '無論結果如何，波克夏龐大的現金儲備和深植的企業文化，都將是其未來發展的堅實基礎。',
+                en: 'Regardless of the outcome, Berkshire\'s vast cash reserves and deeply ingrained corporate culture will be a solid foundation for its future.'
+            }
+        };
+
+        let currentLang = 'zh';
+        const langToggleBtn = document.getElementById('lang-toggle');
+
+        function setLanguage(lang) {
+            document.documentElement.lang = lang === 'zh' ? 'zh-Hant' : 'en';
+            const elements = document.querySelectorAll('[data-lang-key]');
+            elements.forEach(el => {
+                const key = el.getAttribute('data-lang-key');
+                if (languageData[key] && languageData[key][lang]) {
+                    if(key.includes('pollResult')) {
+                         const countSpan = el.querySelector('span');
+                         const originalCount = countSpan ? `(${countSpan.textContent})` : '';
+                         el.innerHTML = languageData[key][lang] + ' ' + originalCount;
+                    } else {
+                        el.innerHTML = languageData[key][lang];
+                    }
+                }
+            });
+            langToggleBtn.textContent = lang === 'zh' ? 'English' : '中文';
+            currentLang = lang;
+        }
+
+        langToggleBtn.addEventListener('click', () => {
+            const newLang = currentLang === 'zh' ? 'en' : 'zh';
+            setLanguage(newLang);
+        });
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('fade-in');
+                    if (entry.target.id === 'portfolio-moves') {
+                        document.getElementById('bar-aapl').style.width = '70%';
+                        document.getElementById('bar-bac').style.width = '100%';
+                        setTimeout(() => {
+                            document.querySelector('.sentiment-meter-needle').style.transform = 'rotate(45deg)';
+                        }, 500);
+                    }
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('section').forEach(section => {
+            observer.observe(section);
+        });
+
+        // --- Donut Chart Logic ---
+        const donutChartText = document.querySelector('.donut-chart-text');
+        const legendItems = document.querySelectorAll('.legend li');
+        const donutSlices = document.querySelectorAll('.donut-chart circle[data-slice]');
+        
+        function setDonutChart() {
+            const holdings = { apple: 22, amex: 16, boa: 10, coke: 10, other: 42 };
+            let offset = 0;
+            for (const [key, value] of Object.entries(holdings)) {
+                const circle = document.getElementById(`circle-${key}`);
+                if(circle) {
+                    circle.style.strokeDasharray = `${value} ${100 - value}`;
+                    circle.style.strokeDashoffset = `-${offset}`;
+                    offset += value;
+                }
+            }
+        }
+        setDonutChart();
+
+        legendItems.forEach(item => {
+            const sliceName = item.dataset.slice;
+            const circle = document.getElementById(`circle-${sliceName}`);
+            
+            item.addEventListener('mouseover', () => {
+                donutSlices.forEach(s => s.style.opacity = '0.3');
+                if(circle) {
+                    circle.style.strokeWidth = '6.5';
+                    circle.style.opacity = '1';
+                }
+                donutChartText.textContent = item.dataset.percent;
+                donutChartText.style.opacity = '1';
+            });
+            
+            item.addEventListener('mouseout', () => {
+                donutSlices.forEach(s => {
+                    s.style.strokeWidth = '5';
+                    s.style.opacity = '1';
+                });
+                donutChartText.style.opacity = '0';
+            });
+        });
+
+        // --- Poll Logic ---
+        const voteYesBtn = document.getElementById('vote-yes');
+        const voteNoBtn = document.getElementById('vote-no');
+        let votes = { yes: 0, no: 0 };
+        let hasVoted = false;
+        function updatePollResults() {
+             if (hasVoted) {
+                const totalVotes = votes.yes + votes.no;
+                if (totalVotes === 0) return;
+                const yesPercent = (votes.yes / totalVotes) * 100;
+                const noPercent = (votes.no / totalVotes) * 100;
+                const pollResultYesSpan = document.querySelector('[data-lang-key="pollResultYes"]');
+                const pollResultNoSpan = document.querySelector('[data-lang-key="pollResultNo"]');
+                if(pollResultYesSpan) pollResultYesSpan.innerHTML = `${languageData.pollResultYes[currentLang]} (<span id="count-yes">${votes.yes}</span>)`;
+                if(pollResultNoSpan) pollResultNoSpan.innerHTML = `${languageData.pollResultNo[currentLang]} (<span id="count-no">${votes.no}</span>)`;
+                document.getElementById('bar-yes').style.width = `${yesPercent}%`;
+                document.getElementById('bar-yes').textContent = `${Math.round(yesPercent)}%`;
+                document.getElementById('bar-no').style.width = `${noPercent}%`;
+                document.getElementById('bar-no').textContent = `${Math.round(noPercent)}%`;
+                voteYesBtn.disabled = true;
+                voteNoBtn.disabled = true;
+            }
+        }
+        voteYesBtn.addEventListener('click', () => { if (!hasVoted) { votes.yes++; hasVoted = true; updatePollResults(); } });
+        voteNoBtn.addEventListener('click', () => { if (!hasVoted) { votes.no++; hasVoted = true; updatePollResults(); } });
+
+        // --- Audio Logic (Interactive & Main Player) ---
+        const audioToggleBtn = document.getElementById('audio-toggle');
+        const interactiveAudio = document.getElementById('interactive-audio');
+        let isAudioPlaying = false;
+        audioToggleBtn.addEventListener('click', () => {
+            if (isAudioPlaying) {
+                interactiveAudio.pause();
+                audioToggleBtn.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+                audioToggleBtn.style.color = 'var(--primary-color)';
+            } else {
+                interactiveAudio.play();
+                audioToggleBtn.style.backgroundColor = 'var(--accent-green)';
+                audioToggleBtn.style.color = 'white';
+            }
+            isAudioPlaying = !isAudioPlaying;
+        });
+        interactiveAudio.addEventListener('ended', () => { 
+            isAudioPlaying = false; 
+            audioToggleBtn.style.backgroundColor = 'rgba(255, 255, 255, 0.9)';
+            audioToggleBtn.style.color = 'var(--primary-color)';
+        });
+
+        // --- 語音摘要庫播放邏輯 ---
+        const mainAudioPlayer = document.getElementById('main-audio-player');
+        const playPauseButtons = document.querySelectorAll('.play-pause-btn');
+        let currentlyPlayingButton = null;
+
+        playPauseButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                const audioSrc = this.dataset.src;
+                const linkType = this.dataset.linkType;
+
+                // 【修改 2】檢查連結類型
+                if (linkType === 'external') {
+                    // 如果是外部連結，在新分頁中打開
+                    window.open(audioSrc, '_blank');
+                    // 並且停止後續的播放器操作
+                    return; 
+                }
+
+                // --- 以下是內部播放器的邏輯 ---
+
+                // 如果點擊的是正在播放的按鈕，則暫停
+                if (this === currentlyPlayingButton && !mainAudioPlayer.paused) {
+                    mainAudioPlayer.pause();
+                    this.classList.remove('playing');
+                    currentlyPlayingButton = null;
+                } else {
+                    // 如果有其他按鈕正在播放，先重置它
+                    if (currentlyPlayingButton) {
+                        currentlyPlayingButton.classList.remove('playing');
+                    }
+                    
+                    // 播放新的音訊
+                    mainAudioPlayer.src = audioSrc;
+                    mainAudioPlayer.play();
+                    this.classList.add('playing');
+                    currentlyPlayingButton = this;
+                }
+            });
+        });
+
+        // 當音訊播放結束時，重置按鈕狀態
+        mainAudioPlayer.addEventListener('ended', () => {
+            if (currentlyPlayingButton) {
+                currentlyPlayingButton.classList.remove('playing');
+                currentlyPlayingButton = null;
+            }
+        });
+        
+        // --- Navigation & UI Logic ---
+        document.getElementById('home-btn').addEventListener('click', (e) => { 
+            e.preventDefault(); 
+            location.reload(); 
+        });
+
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+        
+        // --- 回到頂部按鈕邏輯 ---
+        const backToTopBtn = document.getElementById('back-to-top-btn');
+        window.addEventListener('scroll', () => {
+            if (window.scrollY > 300) {
+                backToTopBtn.classList.add('show');
+            } else {
+                backToTopBtn.classList.remove('show');
+            }
+        });
+        backToTopBtn.addEventListener('click', (e) => {
+            e.preventDefault();
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    });
+    </script>
+</body>
+</html>
