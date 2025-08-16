@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-Hant" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>資訊圖表：深入解析波克夏海瑟威 Q2 投資組合</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/html2canvas@1.4.1/dist/html2canvas.min.js"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;900&family=Noto+Sans+TC:wght@400;500;700;900&display=swap');
+        body {
+            font-family: 'Inter', 'Noto Sans TC', sans-serif;
+            background-color: #111827;
+            color: #F9FAFB;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 500px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 320px;
+        }
+        @media (min-width: 640px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .stat-card {
+            background-color: #1F2937;
+            border: 1px solid #374151;
+            border-radius: 1rem;
+            padding: 1.5rem;
+            text-align: center;
+        }
+        .gradient-text {
+            background: linear-gradient(to right, #00A6FB, #F7B538);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <div class="container mx-auto p-4 md:p-8 max-w-5xl">
+
+        <header class="text-center my-12">
+            <h1 class="text-4xl md:text-6xl font-black tracking-tight gradient-text">深入解析波克夏 Q2 投資版圖</h1>
+            <p class="mt-4 text-lg text-gray-400 max-w-3xl mx-auto">透過數據視覺化，我們將揭示華倫·巴菲特在 2025 年第二季度的投資策略、核心持倉以及其投資組合的集中度特性。</p>
+        </header>
+
+        <section id="kpi" class="my-16">
+            <div class="stat-card">
+                <p class="text-2xl font-bold text-gray-300">蘋果 (AAPL) 的絕對核心地位</p>
+                <p class="text-7xl md:text-8xl font-black my-4" style="color: #00A6FB;">22.38%</p>
+                <p class="text-md text-gray-400">蘋果公司不僅是波克夏最大的單一持股，其佔比超過五分之一，這突顯了巴菲特對其強大品牌護城河與現金流能力的極度信任。</p>
+            </div>
+        </section>
+
+        <section id="composition" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-2">投資組合構成</h2>
+            <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">此甜甜圈圖顯示了投資組合的高度集中性。前十大持股佔據了絕大部分的資產，反映了巴菲特「將所有雞蛋放在一個籃子裡，然後看好那個籃子」的理念。</p>
+            <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6">
+                <div class="chart-container">
+                    <canvas id="compositionDonutChart"></canvas>
+                </div>
+            </div>
+        </section>
+        
+        <section id="top5" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-2">五大巨頭：投資組合的基石</h2>
+            <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">前五大持倉合計佔比超過 68%，是整個投資組合的壓艙石。這些公司多為金融和消費領域的領導者，具有穩定的盈利模式。</p>
+            <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6">
+                 <div class="chart-container" style="max-width: 100%;">
+                    <canvas id="top5BarChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="sectors" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-2">行業板塊分佈</h2>
+            <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">從行業分佈來看，波克夏的投資組合重點佈局於金融和科技兩大領域，同時在能源和消費品等傳統優勢行業也保持著顯著的權重。</p>
+            <div class="bg-gray-800 border border-gray-700 rounded-2xl p-6">
+                <div class="chart-container">
+                    <canvas id="sectorDonutChart"></canvas>
+                </div>
+            </div>
+        </section>
+
+        <section id="top25-list" class="my-16">
+            <h2 class="text-3xl font-bold text-center mb-2">前 25 大持倉明細</h2>
+            <p class="text-center text-gray-400 mb-8 max-w-2xl mx-auto">下表詳細列出了波克夏海瑟威的前 25 大持股，包括其在投資組合中的佔比和所屬行業。點擊下方按鈕可將此表格下載為圖片。</p>
+            
+            <div class="text-center mb-6">
+                <button id="downloadTableBtn" class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-6 rounded-lg transition-colors duration-300">
+                    下載為圖片
+                </button>
+            </div>
+    
+            <div id="holdingsTableContainer" class="bg-gray-800 border border-gray-700 rounded-2xl p-4 md:p-6 overflow-hidden">
+                 <div class="overflow-x-auto">
+                     <table class="w-full text-sm text-left text-gray-300">
+                        <thead class="text-xs text-gray-200 uppercase bg-gray-700">
+                            <tr>
+                                <th scope="col" class="px-4 py-3 md:px-6">排名</th>
+                                <th scope="col" class="px-4 py-3 md:px-6">公司名稱</th>
+                                <th scope="col" class="px-4 py-3 md:px-6">代碼</th>
+                                <th scope="col" class="px-4 py-3 md:px-6">組合佔比</th>
+                                <th scope="col" class="px-4 py-3 md:px-6">變動股份</th>
+                                <th scope="col" class="px-4 py-3 md:px-6">變動比例</th>
+                                <!-- ===== 新增的欄位標頭 ===== -->
+                                <th scope="col" class="px-4 py-3 md:px-6">持股市值</th>
+                                <th scope="col" class="px-4 py-3 md:px-6">持股比例</th>
+                                <!-- ======================== -->
+                                <th scope="col" class="px-4 py-3 md:px-6">行業</th>
+                            </tr>
+                        </thead>
+                        <tbody id="holdingsTableBody">
+                            <!-- Rows will be injected here by JavaScript -->
+                        </tbody>
+                    </table>
+                 </div>
+            </div>
+        </section>
+
+
+        <footer class="text-center my-12 text-gray-500">
+            <p>數據基於截至 2024 年 Q2 的公開持倉報告。</p>
+        </footer>
+
+    </div>
+
+    <script>
+        // ===== 資料已更新，新增 marketValue 和 ownership 欄位 =====
+        const holdingsData = [
+            { name: '蘋果', ticker: 'AAPL', percentage: 22.38, sector: '科技', shareChange: '-2000.00萬', percentChange: '-0.13%', marketValue: '651.92億', ownership: '1.89%' },
+            { name: '美國運通', ticker: 'AXP', percentage: 16.01, sector: '金融', shareChange: '0.00', percentChange: '0.00%', marketValue: '466.55億', ownership: '21.79%' },
+            { name: '美國銀行', ticker: 'BAC', percentage: 9.91, sector: '金融', shareChange: '-2630.62萬', percentChange: '-0.36%', marketValue: '288.77億', ownership: '8.17%' },
+            { name: '可口可樂', ticker: 'KO', percentage: 9.55, sector: '消費品', shareChange: '0.00', percentChange: '0.00%', marketValue: '278.20億', ownership: '9.29%' },
+            { name: '雪佛龍', ticker: 'CVX', percentage: 6.50, sector: '能源', shareChange: '+345.43萬', percentChange: '+0.17%', marketValue: '189.40億', ownership: '6.02%' },
+            { name: '穆迪', ticker: 'MCO', percentage: 4.41, sector: '金融', shareChange: '0.00', percentChange: '0.00%', marketValue: '128.61億', ownership: '13.75%' },
+            { name: '西方石油', ticker: 'OXY', percentage: 4.07, sector: '能源', shareChange: '0.00', percentChange: '0.00%', marketValue: '118.61億', ownership: '26.91%' },
+            { name: '卡夫亨氏', ticker: 'KHC', percentage: 3.09, sector: '消費品', shareChange: '0.00', percentChange: '0.00%', marketValue: '90.04億', ownership: '27.51%' },
+            { name: '三菱商事', ticker: '8058', percentage: 2.81, sector: '工業', shareChange: '+3055.11萬', percentChange: '+0.79%', marketValue: '81.89億', ownership: '10.02%' },
+            { name: '安達保險', ticker: 'CB', percentage: 2.56, sector: '金融', shareChange: '0.00', percentChange: '0.00%', marketValue: '74.54億', ownership: '6.78%' },
+            { name: '伊藤忠商事', ticker: '8001', percentage: 2.47, sector: '工業', shareChange: '+1691.50萬', percentChange: '+1.19%', marketValue: '71.97億', ownership: '9.47%' },
+            { name: '三井物產', ticker: '8031', percentage: 2.13, sector: '工業', shareChange: '+3535.68萬', percentChange: '+1.23%', marketValue: '62.10億', ownership: '9.93%' },
+            { name: '德維特', ticker: 'DVA', percentage: 1.46, sector: '醫療保健', shareChange: '-298.19萬', percentChange: '-4.17%', marketValue: '43.22億', ownership: '44.98%' },
+            { name: '克羅格', ticker: 'KR', percentage: 1.19, sector: '非必需消費品', shareChange: '0.00', percentChange: '0.00%', marketValue: '34.62億', ownership: '7.56%' },
+            { name: '丸紅', ticker: '8002', percentage: 1.15, sector: '工業', shareChange: '+1347.25萬', percentChange: '+0.81%', marketValue: '33.36億', ownership: '9.34%' },
+            { name: '住友商事', ticker: '8053', percentage: 1.04, sector: '工業', shareChange: '+1124.91萬', percentChange: '+0.93%', marketValue: '30.39億', ownership: '9.29%' },
+            { name: 'Sirius XM', ticker: 'SIRI', percentage: 1.01, sector: '通訊服務', shareChange: '+503.04萬', percentChange: '+1.49%', marketValue: '29.32億', ownership: '37.06%' },
+            { name: 'Visa', ticker: 'V', percentage: 0.88, sector: '科技', shareChange: '0.00', percentChange: '0.00%', marketValue: '28.67億', ownership: '0.43%' },
+            { name: '萬事達', ticker: 'MA', percentage: 0.80, sector: '科技', shareChange: '0.00', percentChange: '0.00%', marketValue: '23.27億', ownership: '0.44%' },
+            { name: '亞馬遜', ticker: 'AMZN', percentage: 0.79, sector: '科技', shareChange: '0.00', percentChange: '0.00%', marketValue: '23.10億', ownership: '0.09%' },
+            { name: '星座品牌', ticker: 'STZ', percentage: 0.76, sector: '非必需消費品', shareChange: '+139.10萬', percentChange: '+0.79%', marketValue: '22.71億', ownership: '7.60%' },
+            { name: '第一資本信貸', ticker: 'COF', percentage: 0.54, sector: '金融', shareChange: '0.00', percentChange: '0.00%', marketValue: '15.81億', ownership: '1.12%' },
+            { name: '怡安保險', ticker: 'AON', percentage: 0.52, sector: '金融', shareChange: '0.00', percentChange: '0.00%', marketValue: '15.02億', ownership: '1.90%' },
+            { name: 'Liberty Live-C', ticker: 'LLYVK', percentage: 0.51, sector: '通訊服務', shareChange: '0.00', percentChange: '0.00%', marketValue: '14.82億', ownership: '17.34%' },
+            { name: '聯合健康', ticker: 'UNH', percentage: 0.47, sector: '醫療保健', shareChange: '+503.96萬', percentChange: '+0.56%', marketValue: '13.68億', ownership: '0.56%' }
+        ];
+
+        const palette = {
+            blue1: '#00A6FB',
+            blue2: '#0582CA',
+            blue3: '#006494',
+            yellow: '#F7B538',
+            orange: '#DB7C26',
+            gray: '#4B5563',
+            textColor: '#E5E7EB'
+        };
+        const chartColors = [palette.blue1, palette.yellow, palette.blue2, palette.orange, palette.blue3, '#22c55e', '#8b5cf6', '#ec4899'];
+
+        const defaultTooltipCallback = {
+            plugins: {
+                tooltip: {
+                    callbacks: {
+                        title: function(tooltipItems) {
+                            const item = tooltipItems[0];
+                            let label = item.chart.data.labels[item.dataIndex];
+                            if (Array.isArray(label)) {
+                              return label.join(' ');
+                            } else {
+                              return label;
+                            }
+                        }
+                    }
+                }
+            }
+        };
+
+        const top10Total = holdingsData.slice(0, 10).reduce((sum, item) => sum + item.percentage, 0);
+        const otherHoldingsPercentage = holdingsData.slice(10).reduce((sum, item) => sum + item.percentage, 0);
+
+        const compositionCtx = document.getElementById('compositionDonutChart').getContext('2d');
+        new Chart(compositionCtx, {
+            type: 'doughnut',
+            data: {
+                labels: [...holdingsData.slice(0, 10).map(h => `${h.name} (${h.ticker})`), '其他持倉'],
+                datasets: [{
+                    data: [...holdingsData.slice(0, 10).map(h => h.percentage), otherHoldingsPercentage],
+                    backgroundColor: [...chartColors, palette.gray],
+                    borderColor: '#1f2937',
+                    borderWidth: 3,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '60%',
+                plugins: {
+                    legend: { display: false },
+                    tooltip: defaultTooltipCallback.plugins.tooltip
+                }
+            }
+        });
+
+        const top5Data = holdingsData.slice(0, 5);
+        const top5BarCtx = document.getElementById('top5BarChart').getContext('2d');
+        new Chart(top5BarCtx, {
+            type: 'bar',
+            data: {
+                labels: top5Data.map(h => `${h.name} (${h.ticker})`),
+                datasets: [{
+                    label: '持倉佔比',
+                    data: top5Data.map(h => h.percentage),
+                    backgroundColor: chartColors.slice(0, 5),
+                    borderRadius: 4
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        beginAtZero: true,
+                        grid: { color: 'rgba(255, 255, 255, 0.1)' },
+                        ticks: { color: palette.textColor, font: { size: 12 }, callback: (value) => value + '%' }
+                    },
+                    y: {
+                        grid: { display: false },
+                        ticks: { color: palette.textColor, font: { size: 14 } }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: defaultTooltipCallback.plugins.tooltip
+                }
+            }
+        });
+
+        const sectorData = holdingsData.reduce((acc, curr) => {
+            acc[curr.sector] = (acc[curr.sector] || 0) + curr.percentage;
+            return acc;
+        }, {});
+        const sortedSectors = Object.entries(sectorData).sort(([, a], [, b]) => b - a);
+        
+        const sectorCtx = document.getElementById('sectorDonutChart').getContext('2d');
+        new Chart(sectorCtx, {
+            type: 'doughnut',
+            data: {
+                labels: sortedSectors.map(s => s[0]),
+                datasets: [{
+                    data: sortedSectors.map(s => s[1]),
+                    backgroundColor: chartColors,
+                    borderColor: '#1f2937',
+                    borderWidth: 3,
+                    hoverOffset: 8
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                cutout: '60%',
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                        labels: { color: palette.textColor, padding: 15, font: { size: 12 } }
+                    },
+                    tooltip: defaultTooltipCallback.plugins.tooltip
+                }
+            }
+        });
+
+        // ===== 表格生成邏輯已更新，加入新欄位 =====
+        const tableBody = document.getElementById('holdingsTableBody');
+        holdingsData.forEach((holding, index) => {
+            const row = document.createElement('tr');
+            row.className = 'border-b border-gray-700 hover:bg-gray-900/50';
+
+            let changeColorClass = '';
+            if (holding.shareChange.startsWith('+')) {
+                changeColorClass = 'text-green-400';
+            } else if (holding.shareChange.startsWith('-')) {
+                changeColorClass = 'text-red-400';
+            }
+
+            row.innerHTML = `
+                <td class="px-4 py-4 md:px-6 font-medium">${index + 1}</td>
+                <td class="px-4 py-4 md:px-6 font-medium text-white whitespace-nowrap">${holding.name}</td>
+                <td class="px-4 py-4 md:px-6">${holding.ticker}</td>
+                <td class="px-4 py-4 md:px-6">${holding.percentage.toFixed(2)}%</td>
+                <td class="px-4 py-4 md:px-6 ${changeColorClass}">${holding.shareChange}</td>
+                <td class="px-4 py-4 md:px-6 ${changeColorClass}">${holding.percentChange}</td>
+                <td class="px-4 py-4 md:px-6">${holding.marketValue}</td>
+                <td class="px-4 py-4 md:px-6">${holding.ownership}</td>
+                <td class="px-4 py-4 md:px-6">${holding.sector}</td>
+            `;
+            tableBody.appendChild(row);
+        });
+
+        document.getElementById('downloadTableBtn').addEventListener('click', function() {
+            const tableContainer = document.getElementById('holdingsTableContainer');
+            
+            html2canvas(tableContainer, {
+                backgroundColor: '#1f2937',
+                scale: 2
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = 'berkshire-q2-top25-holdings.png';
+                link.href = canvas.toDataURL('image/png');
+                link.click();
+            });
+        });
+    </script>
+</body>
+</html>
