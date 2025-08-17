@@ -1,0 +1,623 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>嘉南風情二日遊 | 八德社大戶外休閒</title>
+    <style>
+        /* --- 全局樣式 --- */
+        :root {
+            --primary-color: #2c5e4a;
+            --secondary-color: #f3f0e9;
+            --accent-color: #d48c3c;
+            --text-color: #333;
+            --content-text-color: #555;
+            --light-bg: #faf8f2;
+            --card-shadow: 0 10px 20px rgba(0,0,0,0.1);
+            --card-hover-shadow: 0 15px 30px rgba(0,0,0,0.2);
+        }
+
+        @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+TC:wght@400;700&family=Montserrat:wght@400;600&display=swap');
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Noto Serif TC', 'Helvetica Neue', '微軟正黑體', 'Microsoft JhengHei', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: var(--light-bg);
+            color: var(--text-color);
+            line-height: 1.8;
+            font-size: 16px;
+        }
+
+        /* --- 導覽列 --- */
+        .navbar {
+            background-color: var(--primary-color);
+            padding: 1rem;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .navbar a {
+            color: white;
+            text-decoration: none;
+            padding: 12px 24px;
+            margin: 5px;
+            border-radius: 30px;
+            transition: all 0.3s ease;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            background: rgba(255,255,255,0.1);
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+
+        .navbar a:hover {
+            background-color: var(--accent-color);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212,140,60,0.4);
+        }
+
+        /* --- 頁首橫幅 --- */
+        .hero {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('https://cdn-smiletaiwan.cw.com.tw/article/202112/article-61b1d6318ec73.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(44,94,74,0.6) 0%, rgba(212,140,60,0.6) 100%);
+            z-index: 0;
+        }
+
+        .hero h1 {
+            font-size: 3.5em;
+            margin: 0;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.8);
+            position: relative;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+
+        .hero p {
+            font-size: 1.8em;
+            margin-top: 10px;
+            position: relative;
+            font-family: 'Noto Serif TC', serif;
+            font-weight: 400;
+            text-shadow: 1px 1px 4px rgba(0,0,0,0.6);
+        }
+
+        /* --- 內容區塊 --- */
+        .container {
+            max-width: 1100px;
+            margin: 50px auto;
+            padding: 0 20px;
+        }
+        
+        .section {
+            background-color: white;
+            padding: 40px;
+            margin-bottom: 40px;
+            border-radius: 15px;
+            box-shadow: var(--card-shadow);
+            position: relative;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        /* 區塊標題視覺優化 */
+        .section h2 {
+            color: var(--primary-color);
+            padding-left: 20px;
+            font-size: 2.5em;
+            margin-top: 0;
+            margin-bottom: 30px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+            position: relative;
+            letter-spacing: 1px;
+        }
+
+        .section h2::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 8px;
+            background: linear-gradient(to bottom, var(--accent-color), var(--primary-color));
+            border-radius: 4px;
+        }
+        
+        /* 內文顏色優化 */
+        .section p, .section li, .card-content p {
+            color: var(--content-text-color);
+            font-family: 'Noto Serif TC', serif;
+            font-size: 1.05em;
+            line-height: 1.9;
+        }
+
+        /* --- 向上回首頁按鈕 --- */
+        .back-to-top {
+            position: absolute;
+            bottom: 25px;
+            right: 25px;
+            background: linear-gradient(135deg, var(--accent-color), var(--primary-color));
+            color: white;
+            width: 55px;
+            height: 55px;
+            text-align: center;
+            line-height: 55px;
+            border-radius: 50%;
+            text-decoration: none;
+            font-size: 26px;
+            transition: all 0.3s;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            border: 2px solid white;
+        }
+
+        .back-to-top:hover {
+            transform: scale(1.1) translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0,0,0,0.3);
+        }
+
+        /* --- 卡片式排版 (景點/飯店) --- */
+        .card {
+            display: flex;
+            margin-bottom: 40px;
+            background-color: white;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--card-shadow);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: 1px solid rgba(0,0,0,0.05);
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--card-hover-shadow);
+        }
+
+        .card img { /* 適用於單張圖片 */
+            width: 350px;
+            height: 250px;
+            object-fit: cover;
+            flex-shrink: 0;
+            transition: transform 0.5s ease;
+        }
+
+        .card:hover img {
+            transform: scale(1.03);
+        }
+
+        .card-content {
+            padding: 30px;
+            flex: 1;
+        }
+
+        .card-content h3 {
+            margin-top: 0;
+            color: var(--accent-color);
+            font-size: 1.8em;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            margin-bottom: 15px;
+            position: relative;
+            padding-bottom: 10px;
+        }
+
+        .card-content h3::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, var(--accent-color), var(--primary-color));
+            border-radius: 3px;
+        }
+        
+        /* --- 行程表 --- */
+        .itinerary-day {
+            margin-bottom: 30px;
+            background: rgba(243,240,233,0.3);
+            padding: 25px;
+            border-radius: 10px;
+            border-left: 5px solid var(--accent-color);
+        }
+        .itinerary-day h3 {
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            color: white;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            letter-spacing: 1px;
+            margin-top: 0;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+        .itinerary-day ul {
+            list-style-type: none;
+            padding-left: 0;
+        }
+        .itinerary-day li {
+            padding: 12px 15px;
+            border-bottom: 1px dashed rgba(0,0,0,0.1);
+            display: flex;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+        .itinerary-day li:hover {
+            background: rgba(255,255,255,0.5);
+        }
+        .itinerary-day li strong {
+            color: var(--primary-color);
+            display: inline-block;
+            width: 100px;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            font-size: 1.1em;
+        }
+
+        /* --- 費用 & 注意事項列表 --- */
+        .info-list li {
+            margin-bottom: 15px;
+            padding-left: 20px;
+            position: relative;
+        }
+        .info-list li::before {
+            content: '•';
+            color: var(--accent-color);
+            font-weight: bold;
+            font-size: 1.5em;
+            position: absolute;
+            left: 0;
+            top: -3px;
+        }
+        .info-list strong {
+            color: var(--primary-color);
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+        }
+        
+        /* --- Slideshow 幻燈片樣式 --- */
+        .slideshow-container {
+            position: relative;
+            width: 350px;
+            height: 250px;
+            flex-shrink: 0;
+            overflow: hidden;
+            border-radius: 10px 0 0 10px;
+        }
+        .slideshow-container .slide {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .slideshow-container .slide.active {
+            opacity: 1;
+        }
+
+        /* 價格樣式 */
+        #cost p {
+            font-size: 1.8em;
+            color: var(--accent-color);
+            font-weight: bold;
+            text-align: center;
+            margin: 20px 0;
+            font-family: 'Montserrat', sans-serif;
+            letter-spacing: 1px;
+            text-shadow: 1px 1px 3px rgba(0,0,0,0.1);
+            padding: 15px;
+            background: linear-gradient(135deg, rgba(212,140,60,0.1), rgba(44,94,74,0.1));
+            border-radius: 10px;
+            border: 2px dashed var(--accent-color);
+        }
+
+        /* --- RWD 響應式設計 --- */
+        @media (max-width: 768px) {
+            .navbar {
+                justify-content: space-around;
+            }
+            .navbar a {
+                padding: 10px 15px;
+                font-size: 0.9em;
+                margin: 3px;
+            }
+            .hero h1 {
+                font-size: 2.5em;
+            }
+            .hero p {
+                font-size: 1.3em;
+            }
+            .card {
+                flex-direction: column;
+            }
+            .card img, .slideshow-container {
+                width: 100%;
+                height: 220px;
+                border-radius: 10px 10px 0 0 !important;
+            }
+            .back-to-top {
+                width: 45px;
+                height: 45px;
+                line-height: 45px;
+                font-size: 22px;
+                bottom: 20px;
+                right: 20px;
+            }
+            .section {
+                padding: 30px 20px;
+            }
+            .section h2 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- 頂端導覽列 -->
+    <a id="top"></a>
+    <nav class="navbar">
+        <a href="#itinerary">行程總覽</a>
+        <a href="#hotel">飯店介紹</a>
+        <a href="#attractions">景點介紹</a>
+        <a href="#traffic">交通資訊</a>
+        <a href="#cost">費用說明</a>
+        <a href="#notes">注意事項</a>
+    </nav>
+
+    <!-- 頁首主視覺 -->
+    <header class="hero">
+        <h1>嘉南風情二日遊</h1>
+        <p>八德社大戶外休閒 | 2024/08/26 - 08/27</p>
+    </header>
+
+    <!-- 主要內容區 -->
+    <div class="container">
+
+        <!-- 行程總覽 -->
+        <section id="itinerary" class="section">
+            <h2>行程總覽</h2>
+            <div class="itinerary-day">
+                <h3>DAY 1：8/26 (一) 雲林嘉義森活之旅</h3>
+                <ul>
+                    <li><strong>06:30</strong> 八德快樂出發</li>
+                    <li><strong>10:00</strong> 【澄霖沉香味道森林館】日式庭園、山水美景</li>
+                    <li><strong>12:00</strong> 午餐 </li>
+                    <li><strong>13:30</strong> 【馬鳴山五年千歲公園】全台最大迷宮林園</li>
+                    <li><strong>15:30</strong> 【板陶窯交趾剪黏工藝園區】童趣藝術村</li>
+                    <li><strong>17:30</strong> 晚餐 </li>
+                    <li><strong>19:00</strong> 入住【嘉義大飯店】</li>
+                </ul>
+            </div>
+            <div class="itinerary-day">
+                <h3>DAY 2：8/27 (二) 懷舊與靜謐之旅</h3>
+                <ul>
+                    <li><strong>07:30</strong> 飯店自助式早餐</li>
+                    <li><strong>09:00</strong> 【將軍府/檜意森活村】日式老宅、文創市集</li>
+                    <li><strong>10:30</strong> 【耐斯花園】市區綠洲，悠閒漫步</li>
+                    <li><strong>12:00</strong> 午餐 </li>
+                    <li><strong>14:00</strong> 【寧靜禦庭】景觀餐廳、愜意下午</li>
+                    <li><strong>16:00</strong> 帶著滿滿回憶，快樂賦歸</li>
+                    <li><strong>18:30</strong> 晚餐 (途中餐廳)</li>
+                    <li><strong>20:30</strong> 抵達溫暖的家</li>
+                </ul>
+            </div>
+            <a href="#top" class="back-to-top" title="回到首頁">↑</a>
+        </section>
+
+        <!-- 飯店介紹 -->
+        <section id="hotel" class="section">
+            <h2>飯店介紹</h2>
+            <div class="card">
+                <img src="https://cdn-smiletaiwan.cw.com.tw/article/202112/article-61b1d6318ec73.jpg" alt="嘉義大飯店外觀">
+                <div class="card-content">
+                    <h3>嘉義大飯店 (或同級)</h3>
+                    <p>位於嘉義市中心，交通便利，提供舒適潔淨的住宿環境。經過一天的旅途勞頓後，飯店的溫馨服務與完善設施能讓您徹底放鬆，養足精神迎接第二天的精彩旅程。</p>
+                    <p><strong>房型：</strong>兩人一室，兩小床 (Twin Bed Room)。</p>
+                </div>
+            </div>
+             <a href="#top" class="back-to-top" title="回到首頁">↑</a>
+        </section>
+
+        <!-- 景點介紹 -->
+        <section id="attractions" class="section">
+            <h2>景點介紹</h2>
+            <div class="card">
+                <div class="slideshow-container">
+                    <img src="https://yunlin.orientluxuryhotel.com.tw/upload/fac_travel_m/ALL_fac_travel_22G07_jGzfKQN9iE.jpg" class="slide active" alt="澄霖沉香味道森林館照片1">
+                    <img src="https://suni.tw/wp-content/uploads/20180607084229_48.jpg" class="slide" alt="澄霖沉香味道森林館照片2">
+                    <img src="https://eeis.ylepb.gov.tw/df_ufiles/d/1(1).jpg" class="slide" alt="澄霖沉香味道森林館照片3">
+                    <img src="https://i17fun.tw/wp-content/uploads/IMG_3224.jpg" class="slide" alt="澄霖沉香味道森林館照片4">
+                </div>
+                <div class="card-content">
+                    <h3>澄霖沉香味道森林館</h3>
+                    <p>號稱「台版兼六園」，擁有優雅的日式禪風庭園。您可以在此欣賞美麗的落羽松、水上愛心造景，並在充滿沉香香氣的環境中放鬆身心，是拍照打卡的絕佳地點。</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="slideshow-container">
+                    <img src="https://images.abic.com.tw/photoDB/post/1637634747.jpg" class="slide active" alt="馬鳴山五年千歲公園照片1">
+                    <img src="https://img.eattnn.com/20210222172835_34.jpg" class="slide" alt="馬鳴山五年千歲公園照片2">
+                    <img src="https://haohui2017.com/wp-content/uploads/2024/04/20240424212956_0.jpg" class="slide" alt="馬鳴山五年千歲公園照片3">
+                    <img src="https://puddings.tw/wp-content/uploads/pixnet/946d26ca2198d6ad186c2683f6775625.jpg" class="slide" alt="馬鳴山五年千歲公園照片4">
+                </div>
+                <div class="card-content">
+                    <h3>馬鳴山五年千歲公園</h3>
+                    <p>全台規模最大的寺廟主題公園，以其壯觀的73個景點和巨大的迷宮式庭園聞名。穿梭於假山、石洞、小橋流水之間，彷彿進入一個奇幻世界，處處充滿驚喜。</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="slideshow-container">
+                    <img src="https://images.abic.com.tw/photoDB/post/1673271250.jpg" class="slide active" alt="板陶窯照片1">
+                    <img src="https://bobowin.blog/wp-content/uploads/20220516210307_7.jpg" class="slide" alt="板陶窯照片2">
+                    <img src="https://photo.travelking.com.tw/scenery/47F8E3DE-EE9B-4261-90C2-94140323CBF3_d.jpg" class="slide" alt="板陶窯照片3">
+                    <img src="https://yoke918.tw/wp-content/uploads/2018/08/Desktop1889540.jpg" class="slide" alt="板陶窯照片4">
+                </div>
+                <div class="card-content">
+                    <h3>板陶窯交趾剪黏工藝園區</h3>
+                    <p>一個充滿童趣與藝術氣息的園區。隨處可見可愛的交趾陶與剪黏馬賽克作品，重現了早期農村生活景象。您也可以自費體驗馬賽克拼貼DIY，創作出屬於自己的紀念品。</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="slideshow-container">
+                     <img src="https://lh6.googleusercontent.com/-k09Z9KBwEtY/VGWq0-MJSRI/AAAAAAAAuE0/qmMoebERdsg/s750/hinokivillage01.jpg" class="slide active" alt="檜意森活村照片1">
+                     <img src="https://anny.cc/wp-content/uploads/09-69.jpg" class="slide" alt="檜意森活村照片2">
+                     <img src="https://afrch.forest.gov.tw/ArtPic22884_1920X1920.jpg" class="slide" alt="檜意森活村照片3">
+                     <img src="https://img.soundofhope.org/2020-12/1608294091358.jpg" class="slide" alt="檜意森活村照片4">
+                </div>
+                <div class="card-content">
+                    <h3>將軍府 / 檜意森活村</h3>
+                    <p>這裡是全台保存最完整的日式官舍建築群。漫步其中，彷彿穿越時空回到日治時代。村內有許多文創小店、特色美食與展覽，是體驗嘉義歷史與文創活力的好去處。</p>
+                </div>
+            </div>
+             <div class="card">
+                <div class="slideshow-container">
+                     <img src="https://13blog.tw/wp-content/uploads/2025/07/15402895756_50ed7309c7_o.jpg" class="slide active" alt="耐斯花園照片1">
+                     <img src="https://cmeyy.tw/wp-content/uploads/2020/02/1582789744-6a617c4028affb224d8c8717ef49e9ce.jpg" class="slide" alt="耐斯花園照片2">
+                     <img src="https://img.ihappyday.tw/2019/12/1577236502-20a1cda346d2d6f50acf3030e6584f6e.jpg" class="slide" alt="耐斯花園照片3">
+                     <img src="https://cmeyy.tw/wp-content/uploads/2020/02/1582789864-75bda594ebaf317ee2e9980ccd6a3fd6.jpg" class="slide" alt="耐斯花園照片4">
+                </div>
+                <div class="card-content">
+                    <h3>耐斯花園 </h3>
+                    <p>「耐斯花園」佔地六千多坪，是耐斯企業集團旗下香氛品牌，這次來訪多了「熱帶花園迷宮」、「漂浮花園」，整個園區詩情畫意也增加不少裝置物，迷人又好拍又是免費景點，若有來雲林千萬別錯過再進來一遊哦！。</p>
+                </div>
+            </div>
+            <div class="card">
+                <div class="slideshow-container">
+                    <img src="https://fbuon.com/wp-content/uploads/2022/02/47.jpg" class="slide active" alt="寧靜禦庭照片1">
+                    <img src="https://cmeyy.tw/wp-content/uploads/2025/01/DSC03169.jpg" class="slide" alt="寧靜禦庭照片2">
+                    <img src="https://fbuon.com/wp-content/uploads/2022/02/1-7.jpg" class="slide" alt="寧靜禦庭照片3">
+                    <img src="https://cc.tvbs.com.tw/img/program/upload/2023/09/12/20230912164000-4641df2e.jpg" class="slide" alt="寧靜禦庭照片4">
+                </div>
+                <div class="card-content">
+                    <h3>寧靜禦庭</h3>
+                    <p>一間結合美食與美景的庭園餐廳。古色古香的建築搭配精緻的園林造景，提供一個極佳的休憩空間。在此享用午餐或下午茶，為這趟美好的旅程畫上完美句點。</p>
+                </div>
+            </div>
+            <a href="#top" class="back-to-top" title="回到首頁">↑</a>
+        </section>
+
+        <!-- 交通資訊 -->
+        <section id="traffic" class="section">
+            <h2>交通資訊</h2>
+            <p>本次行程由「安騎車站」統一安排，全程搭乘**豪華舒適的遊覽車**，讓您免去開車的辛勞，輕鬆享受旅途中的每一刻。</p>
+            <ul class="info-list">
+                <li><strong>交通工具：</strong>大型遊覽車 42人座</li>
+                <li><strong>出發時間：</strong>8/26 (一) 上午 6:30</li>
+                <li><strong>出發地點：</strong>八德指定地點</li>
+            </ul>
+             <a href="#top" class="back-to-top" title="回到首頁">↑</a>
+        </section>
+
+        <!-- 費用說明 -->
+        <section id="cost" class="section">
+            <h2>費用說明</h2>
+            <p>每位團員優惠價： NT$ 3,000 元;費用會以報名人數稍有調整</p>
+            <ul class="info-list">
+                <li><strong>名額：</strong>限量 42 位</li>
+                <li><strong>費用包含：</strong>
+                    <ul>
+                        <li>全程遊覽車車資</li>
+                        <li>司機、領隊服務費用</li>
+                        <li>保險</li>
+                        <li>住宿：嘉義大飯店或同級（兩人一室/兩小床）</li>
+                        <li>餐食：共 6 餐（第一天午、晚餐；第二天早、午、晚餐，及一餐途中餐點）</li>
+                     </ul>
+                </li>
+                <li><strong>費用不包含：</strong>
+                    <ul>
+                        <li>個人因素所產生之消費，如飲料、酒類、私人購物等</li>
+                        <li>景點內個人自費項目（如：板陶窯DIY體驗）</li>
+                        <li>個人旅遊平安險，建議可自行加保</li>
+                    </ul>
+                </li>
+            </ul>
+             <a href="#top" class="back-to-top" title="回到首頁">↑</a>
+        </section>
+
+        <!-- 注意事項 -->
+        <section id="notes" class="section">
+            <h2>注意事項</h2>
+            <ul class="info-list">
+                <li><strong>準時集合：</strong>請務必準時於指定地點集合，逾時不候，以利行程順暢。</li>
+                <li><strong>輕便穿著：</strong>建議穿著舒適、方便行走的休閒服裝與鞋子。</li>
+                <li><strong>個人藥品：</strong>請自行準備個人常用藥品，如暈車藥、腸胃藥、高血壓藥等。</li>
+                <li><strong>防曬防雨：</strong>夏季天氣多變，請準備帽子、太陽眼鏡、防曬用品及雨具。</li>
+                <li><strong>環保愛地球：</strong>為響應環保，建議自行攜帶水壺、環保餐具。</li>
+                <li><strong>證件攜帶：</strong>請務必攜帶個人身分證、健保卡等證件，以備不時之需。</li>
+                <li><strong>保持愉快：</strong>保持一顆愉快的心，享受這趟美好的嘉南風情之旅！</li>
+            </ul>
+             <a href="#top" class="back-to-top" title="回到首頁">↑</a>
+        </section>
+
+    </div>
+    
+    <!-- 【升級版】通用型幻燈片 JavaScript -->
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            // 找出頁面上所有 slideshow-container 元素
+            const slideshows = document.querySelectorAll(".slideshow-container");
+
+            // 為每一個 slideshow-container 獨立設定輪播
+            slideshows.forEach(slideshow => {
+                let currentSlide = 0;
+                const slides = slideshow.querySelectorAll(".slide");
+                const totalSlides = slides.length;
+
+                // 只有當圖片超過一張時才啟動輪播
+                if (totalSlides > 1) {
+                    setInterval(() => {
+                        // 移除目前圖片的 active class
+                        slides[currentSlide].classList.remove('active');
+                        
+                        // 計算下一張圖片的索引
+                        currentSlide = (currentSlide + 1) % totalSlides;
+                        
+                        // 為下一張圖片加上 active class
+                        slides[currentSlide].classList.add('active');
+                    }, 5000); // 5000 毫秒 = 5 秒
+                }
+            });
+        });
+    </script>
+
+</body>
+</html>
