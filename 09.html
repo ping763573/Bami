@@ -392,6 +392,12 @@
 </head>
 <body>
 
+    <!-- 背景音樂播放器 -->
+    <audio id="background-music" loop autoplay>
+        <source src="https://ping763573.github.io/Bami/10.mp3" type="audio/mpeg">
+        您的瀏覽器不支援音訊播放。
+    </audio>
+
     <!-- 頂端導覽列 -->
     <a id="top"></a>
     <nav class="navbar">
@@ -401,6 +407,7 @@
         <a href="#traffic">交通資訊</a>
         <a href="#cost">費用說明</a>
         <a href="#notes">注意事項</a>
+        <a href="#" id="music-toggle">關閉音樂</a>
     </nav>
 
     <!-- 頁首主視覺 -->
@@ -590,30 +597,51 @@
 
     </div>
     
-    <!-- 【升級版】通用型幻燈片 JavaScript -->
     <script>
         document.addEventListener("DOMContentLoaded", function() {
-            // 找出頁面上所有 slideshow-container 元素
+            // --- 新增的音樂播放控制 ---
+            const music = document.getElementById('background-music');
+            const toggleBtn = document.getElementById('music-toggle');
+
+            // 嘗試自動播放音樂
+            let playPromise = music.play();
+            if (playPromise !== undefined) {
+                playPromise.then(_ => {
+                    // 自動播放成功，按鈕顯示「關閉音樂」
+                    toggleBtn.textContent = '關閉音樂';
+                }).catch(error => {
+                    // 自動播放被瀏覽器阻止，按鈕顯示「開啟音樂」
+                    console.log("音樂自動播放失敗，可能需要使用者手動操作。");
+                    toggleBtn.textContent = '開啟音樂';
+                });
+            }
+
+            // 為音樂開關按鈕添加點擊事件
+            toggleBtn.addEventListener('click', function(e) {
+                e.preventDefault(); // 防止點擊連結時頁面跳轉
+                if (music.paused) {
+                    music.play();
+                    toggleBtn.textContent = '關閉音樂';
+                } else {
+                    music.pause();
+                    toggleBtn.textContent = '開啟音樂';
+                }
+            });
+
+            // --- 原有的幻燈片 JavaScript ---
             const slideshows = document.querySelectorAll(".slideshow-container");
 
-            // 為每一個 slideshow-container 獨立設定輪播
             slideshows.forEach(slideshow => {
                 let currentSlide = 0;
                 const slides = slideshow.querySelectorAll(".slide");
                 const totalSlides = slides.length;
 
-                // 只有當圖片超過一張時才啟動輪播
                 if (totalSlides > 1) {
                     setInterval(() => {
-                        // 移除目前圖片的 active class
                         slides[currentSlide].classList.remove('active');
-                        
-                        // 計算下一張圖片的索引
                         currentSlide = (currentSlide + 1) % totalSlides;
-                        
-                        // 為下一張圖片加上 active class
                         slides[currentSlide].classList.add('active');
-                    }, 5000); // 5000 毫秒 = 5 秒
+                    }, 5000); // 5 秒切換一次
                 }
             });
         });
