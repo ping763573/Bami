@@ -1,0 +1,542 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美股投資學習平台</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- 全螢幕切換按鈕 -->
+    <button id="fullscreenBtn" class="fullscreen-btn" title="全螢幕切換 (F11)">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M8 3H5a2 2 0 0 0-2 2v3m18 0V5a2 2 0 0 0-2-2h-3m0 18h3a2 2 0 0 0 2-2v-3M3 16v3a2 2 0 0 0 2 2h3"/>
+        </svg>
+    </button>
+
+    <!-- 主導航 -->
+    <nav class="main-nav">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <h1>美股投資學習平台</h1>
+            </div>
+            <div class="nav-menu">
+                <button class="nav-item active" data-section="home">首頁</button>
+                <button class="nav-item" data-section="channels">投資管道</button>
+                <button class="nav-item" data-section="comparison">美股台股比較</button>
+                <button class="nav-item" data-section="types">美股種類</button>
+                <button class="nav-item" data-section="top-stocks">重點個股</button> <!-- 新增按鈕 -->
+                <button class="nav-item" data-section="indicators">美股資訊管道</button>
+                <button class="nav-item" data-section="notes">注意事項</button>
+                <button class="nav-item" data-section="taxation">稅務詳解</button>
+                <button class="nav-item" data-section="flashcards">學習閃卡</button>
+                <button class="nav-item" data-section="quiz">測驗系統</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- 主內容區域 -->
+    <main class="main-content">
+        <!-- 首頁 -->
+        <section id="home" class="section active">
+            <div class="container">
+                <div class="hero">
+                    <h2>歡迎來到美股投資學習平台</h2>
+                    <p>從基礎概念到實戰技巧，全方位學習美股投資知識</p>
+                </div>
+                <div class="feature-grid">
+                    <div class="feature-card" data-section="channels"><div class="feature-icon">📊</div><h3>投資管道</h3><p>了解複委託、海外券商與國內ETF的差異</p></div>
+                    <div class="feature-card" data-section="comparison"><div class="feature-icon">⚖️</div><h3>美股台股比較</h3><p>交易規則與投資優勢分析</p></div>
+                    <div class="feature-card" data-section="types"><div class="feature-icon">🏢</div><h3>美股種類</h3><p>個股、ETF、REITs詳細介紹</p></div>
+                    <div class="feature-card" data-section="top-stocks"><div class="feature-icon">⭐</div><h3>重點個股</h3><p>分析十大市值龍頭與科技巨擘</p></div> <!-- 新增卡片 -->
+                    <div class="feature-card" data-section="indicators"><div class="feature-icon">📡</div><h3>美股資訊管道</h3><p>掌握即時新聞、數據與分析工具</p></div>
+                    <div class="feature-card" data-section="notes"><div class="feature-icon">⚠️</div><h3>注意事項</h3><p>風險管理與投資要點</p></div>
+                    <div class="feature-card" data-section="taxation"><div class="feature-icon">🧾</div><h3>稅務詳解</h3><p>解析股息、價差在海內外的稅務問題</p></div>
+                    <div class="feature-card" data-section="flashcards"><div class="feature-icon">🎯</div><h3>學習閃卡</h3><p>50題重點知識複習</p></div>
+                    <div class="feature-card" data-section="quiz"><div class="feature-icon">✅</div><h3>測驗系統</h3><p>50題測驗檢驗學習成果</p></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 投資管道 -->
+        <section id="channels" class="section">
+            <div class="container">
+                <h2>在台灣投資美股的管道</h2>
+                <div class="channels-grid" style="grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));">
+                    <div class="channel-card">
+                        <h3>複委託 (Sub-brokerage)</h3>
+                        <p class="channel-desc">透過國內券商向海外券商下單</p>
+                        <div class="pros-cons">
+                            <div class="pros"><h4>優點</h4><ul id="trustee-pros"></ul></div>
+                            <div class="cons"><h4>缺點</h4><ul id="trustee-cons"></ul></div>
+                        </div>
+                        <div class="channel-info">
+                            <div class="fee-info"><span class="label">手續費：</span><span id="trustee-fees"></span></div>
+                            <div class="suitable-info"><span class="label">適合對象：</span><span id="trustee-suitable"></span></div>
+                            <div class="suitable-info"><span class="label">代表券商：</span><span>國泰、永豐金、元大、富邦等大型券商</span></div>
+                        </div>
+                        <div class="how-to-open">
+                            <h4>開戶與買賣流程</h4>
+                            <ol>
+                                <li>選擇一家有提供複委託服務的國內券商。</li>
+                                <li>臨櫃或線上開立台股證券戶 (若無) 及複委託帳戶。</li>
+                                <li>開立銀行外幣帳戶作為交割戶。</li>
+                                <li>將台幣換匯成美元存入外幣交割戶。</li>
+                                <li>透過券商APP或網站，直接下單購買美股。</li>
+                                <li>賣出後款項會回到外幣交割戶。</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="channel-card">
+                        <h3>海外券商 (Overseas Broker)</h3>
+                        <p class="channel-desc">直接開設海外券商帳戶進行交易</p>
+                        <div class="pros-cons">
+                            <div class="pros"><h4>優點</h4><ul id="overseas-pros"></ul></div>
+                            <div class="cons"><h4>缺點</h4><ul id="overseas-cons"></ul></div>
+                        </div>
+                        <div class="channel-info">
+                            <div class="fee-info"><span class="label">手續費：</span><span id="overseas-fees"></span></div>
+                            <div class="suitable-info"><span class="label">適合對象：</span><span id="overseas-suitable"></span></div>
+                            <div class="broker-list">
+                                <span class="label">代表券商：</span>
+                                <ul>
+                                    <li><a href="https://www.firstrade.com/zh-TW/" target="_blank">Firstrade (第一證券)</a> - 介面全中文化，適合新手。</li>
+                                    <li><a href="https://www.interactivebrokers.com/cn/home.php" target="_blank">Interactive Brokers (IB盈透證券)</a> - 功能專業強大，適合進階用戶。</li>
+                                    <li><a href="https://www.schwab.com/" target="_blank">Charles Schwab (嘉信理財)</a> - 知名大型券商，資產門檻較高。</li>
+                                </ul>
+                            </div>
+                        </div>
+                        <div class="how-to-open">
+                            <h4>開戶與買賣詳盡教學 (以Firstrade為例)</h4>
+                            <h5>第一步：線上註冊與資料填寫</h5>
+                            <ol>
+                                <li><strong>前往官網：</strong>點擊上方連結進入 Firstrade 繁體中文官方網站。</li>
+                                <li><strong>點擊開戶：</strong>點選「立即開戶」，選擇「國際賬戶」。</li>
+                                <li><strong>填寫基本資料：</strong>依序填寫手機號碼、國籍(TAIWAN)、英文姓名(需與護照相同)、出生日期。</li>
+                                <li><strong>上傳證件：</strong>使用手機拍攝或掃描您的「護照」清晰照片並上傳。若無護照，通常可用身分證正反面代替。</li>
+                                <li><strong>填寫詳細個資：</strong>以「英文」填寫居住地址、就業狀況、投資經驗等問卷調查。地址可至郵局網站翻譯。</li>
+                                <li><strong>設定帳號密碼：</strong>設定登入用的使用者名稱、密碼及安全提問。</li>
+                                <li><strong>簽署W-8 BEN表格：</strong>此為電子簽名，確認您是非美國稅務居民身份，以豁免資本利得稅。務必完成此步驟。</li>
+                                <li><strong>提交審核：</strong>完成所有步驟後提交申請，通常約1-3個工作天會收到審核通過的Email通知。</li>
+                            </ol>
+                            <h5>第二步：匯款入金</h5>
+                            <ol>
+                                <li>登入 Firstrade 帳戶，在「我的賬戶」->「存款/提款」中找到詳細的匯款資料 (包含銀行名稱、地址、SWIFT Code、您的專屬帳號等)。</li>
+                                <li>攜帶此資料及您的身分證，至國內任何一家銀行的外匯櫃檯辦理「海外電匯」。</li>
+                                <li>告知行員您要匯款至美國的證券戶，並填寫水單。匯款附言(Memo)務必註明您的姓名與券商帳號。</li>
+                                <li>資金約1-3個工作天會到達您的券商帳戶。</li>
+                            </ol>
+                            <h5>第三步：下單交易</h5>
+                            <ol>
+                                <li>登入帳戶後，點選「交易」頁面。</li>
+                                <li>在搜尋框輸入您想買的股票代碼 (TICKER)，例如蘋果是 AAPL。</li>
+                                <li><strong>操作類型：</strong>選擇「買入(Buy)」。</li>
+                                <li><strong>股數：</strong>輸入您想購買的股數，美股可以只買1股。</li>
+                                <li><strong>價格類型：</strong>
+                                    <ul>
+                                        <li><strong>市價單 (Market Order)：</strong>以市場當下最快的價格成交，速度快但不保證價格。</li>
+                                        <li><strong>限價單 (Limit Order)：</strong>設定一個您願意購買的「最高價格」。只有股價達到或低於此價格才會成交，能保障成本。新手建議使用限價單。</li>
+                                    </ul>
+                                </li>
+                                <li>預覽訂單無誤後，送出即可。賣出股票流程相似，只需將操作類型改為「賣出(Sell)」。</li>
+                            </ol>
+                        </div>
+                    </div>
+
+                    <div class="channel-card">
+                        <h3>國內投信海外ETF</h3>
+                        <p class="channel-desc">直接在台股市場買賣追蹤海外指數的ETF</p>
+                        <div class="pros-cons">
+                            <div class="pros"><h4>優點</h4><ul id="domestic-etf-pros"></ul></div>
+                            <div class="cons"><h4>缺點</h4><ul id="domestic-etf-cons"></ul></div>
+                        </div>
+                        <div class="channel-info">
+                            <div class="fee-info"><span class="label">手續費：</span><span id="domestic-etf-fees"></span></div>
+                            <div class="suitable-info"><span class="label">適合對象：</span><span id="domestic-etf-suitable"></span></div>
+                             <div class="suitable-info"><span class="label">代表ETF：</span><span>元大S&P500(00646), 富邦NASDAQ(00662), 國泰費城半導體(00830)</span></div>
+                        </div>
+                         <div class="how-to-open">
+                            <h4>開戶與買賣流程</h4>
+                            <ol>
+                                <li>擁有任何一家台灣的證券帳戶即可。</li>
+                                <li>交易方式與買賣台股完全相同。</li>
+                                <li>打開券商APP，輸入ETF代碼 (如 "00646")。</li>
+                                <li>設定欲購買的價格與股數 (可零股交易)。</li>
+                                <li>下單成交後，T+2日從台幣交割戶扣款。</li>
+                            </ol>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 美股台股比較 -->
+        <section id="comparison" class="section">
+            <div class="container">
+                <h2>美股與台股比較</h2>
+                <div class="comparison-table-container"><table class="comparison-table"><thead><tr><th>項目</th><th>台股</th><th>美股</th></tr></thead><tbody id="comparison-table-body"></tbody></table></div>
+                <div class="advantages-section"><h3>投資優勢比較</h3><div class="advantages-grid"><div class="advantage-card"><h4>台股優勢</h4><ul id="taiwan-advantages"></ul></div><div class="advantage-card"><h4>美股優勢</h4><ul id="us-advantages"></ul></div></div></div>
+            </div>
+        </section>
+        
+        <!-- 美股種類 -->
+        <section id="types" class="section">
+            <div class="container">
+                <h2>美股種類介紹</h2>
+                <div class="stock-types-grid">
+                    <div class="stock-type-card"><h3>個股</h3><p id="individual-desc"></p><div class="examples"><h4>知名範例</h4><div class="example-tags" id="individual-examples"></div></div><div class="type-info"><div class="advantages"><h4>優點</h4><ul id="individual-advantages"></ul></div><div class="risks"><h4>風險</h4><ul id="individual-risks"></ul></div></div></div>
+                    <div class="stock-type-card"><h3>ETF</h3><p id="etf-desc"></p><div class="etf-types"><h4>主要類型</h4><div id="etf-types-content"></div></div><div class="type-info"><div class="advantages"><h4>優點</h4><ul id="etf-advantages"></ul></div><div class="risks"><h4>風險</h4><ul id="etf-risks"></ul></div></div></div>
+                    <div class="stock-type-card"><h3>REITs</h3><p id="reits-desc"></p><div class="reits-types"><h4>主要類型</h4><div class="example-tags" id="reits-types-content"></div></div><div class="type-info"><div class="advantages"><h4>優點</h4><ul id="reits-advantages"></ul></div><div class="risks"><h4>風險</h4><ul id="reits-risks"></ul></div></div></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 全新：重點個股分析 Section -->
+        <section id="top-stocks" class="section">
+            <div class="container">
+                <h2>重點個股分析</h2>
+                <div class="stocks-grid">
+                    <!-- Microsoft -->
+                    <div class="stock-intro-card">
+                        <div class="stock-card-header">
+                            <img src="https://cdn.logosear.ch/logo/microsoft.svg" alt="Microsoft Logo" class="stock-logo">
+                            <div class="stock-name"><strong>微軟 (Microsoft)</strong><span class="stock-ticker">MSFT</span></div>
+                        </div>
+                        <p class="stock-trait">全球最大的軟體與雲端服務巨頭，從作業系統到企業級雲端運算，深度整合軟硬體生態。</p>
+                        <div class="stock-card-details">
+                            <h4>核心領域</h4>
+                            <ul>
+                                <li>智慧雲端 (Azure, Server Products)</li>
+                                <li>生產力與商務流程 (Office 365, Dynamics 365, LinkedIn)</li>
+                                <li>個人運算 (Windows, Surface, Xbox, Bing)</li>
+                            </ul>
+                            <h4>主要護城河</h4>
+                            <ul>
+                                <li>高轉換成本：企業客戶深度依賴其生態系統。</li>
+                                <li>網路效應：Office 和 Windows 的普及率。</li>
+                                <li>規模優勢：Azure 雲端基礎設施的巨大規模。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Apple -->
+                    <div class="stock-intro-card">
+                        <div class="stock-card-header">
+                            <img src="https://cdn.logosear.ch/logo/apple.svg" alt="Apple Logo" class="stock-logo">
+                            <div class="stock-name"><strong>蘋果 (Apple)</strong><span class="stock-ticker">AAPL</span></div>
+                        </div>
+                        <p class="stock-trait">以極致的軟硬體整合體驗與強大的品牌忠誠度著稱，打造了封閉但極具黏性的生態系統。</p>
+                        <div class="stock-card-details">
+                            <h4>核心領域</h4>
+                            <ul>
+                                <li>消費電子 (iPhone, Mac, iPad, Apple Watch)</li>
+                                <li>服務業務 (App Store, Apple Music, iCloud, Apple TV+)</li>
+                                <li>穿戴式裝置與配件</li>
+                            </ul>
+                            <h4>主要護城河</h4>
+                            <ul>
+                                <li>強大品牌價值：全球最具價值的品牌之一。</li>
+                                <li>生態系統鎖定：硬體、軟體與服務間的高轉換成本。</li>
+                                <li>網路效應：App Store 吸引開發者與使用者。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- NVIDIA -->
+                    <div class="stock-intro-card">
+                        <div class="stock-card-header">
+                            <img src="https://cdn.logosear.ch/logo/nvidia.svg" alt="NVIDIA Logo" class="stock-logo">
+                            <div class="stock-name"><strong>輝達 (NVIDIA)</strong><span class="stock-ticker">NVDA</span></div>
+                        </div>
+                        <p class="stock-trait">全球圖形處理器 (GPU) 的絕對領導者，從電競顯卡擴展為AI運算與數據中心的基礎設施核心。</p>
+                        <div class="stock-card-details">
+                            <h4>核心領域</h4>
+                            <ul>
+                                <li>數據中心 (AI晶片, 高效能運算)</li>
+                                <li>遊戲 (GeForce 系列顯卡)</li>
+                                <li>專業視覺化 (Quadro)</li>
+                                <li>車用電子 (自動駕駛平台)</li>
+                            </ul>
+                            <h4>主要護城河</h4>
+                            <ul>
+                                <li>技術領先：GPU 架構的持續創新。</li>
+                                <li>軟體生態 (CUDA)：開發者黏性極高，形成高轉換成本。</li>
+                                <li>無形資產：大量的專利與研發投入。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Google -->
+                    <div class="stock-intro-card">
+                        <div class="stock-card-header">
+                            <img src="https://cdn.logosear.ch/logo/google.svg" alt="Google Logo" class="stock-logo">
+                            <div class="stock-name"><strong>谷歌 (Alphabet)</strong><span class="stock-ticker">GOOGL</span></div>
+                        </div>
+                        <p class="stock-trait">全球網路搜尋與數位廣告的壟斷者，並在雲端、AI與自動駕駛等前沿科技領域持續佈局。</p>
+                        <div class="stock-card-details">
+                            <h4>核心領域</h4>
+                            <ul>
+                                <li>搜尋與廣告 (Google Search, YouTube Ads)</li>
+                                <li>雲端運算 (Google Cloud Platform)</li>
+                                <li>行動生態 (Android, Google Play)</li>
+                                <li>其他賭注 (Waymo 自動駕駛, Verily 生命科學)</li>
+                            </ul>
+                            <h4>主要護城河</h4>
+                            <ul>
+                                <li>網路效應：搜尋引擎的數據飛輪效應。</li>
+                                <li>品牌優勢：Google 已成為「搜尋」的代名詞。</li>
+                                <li>規模優勢：龐大的數據中心與使用者基礎。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Amazon -->
+                    <div class="stock-intro-card">
+                        <div class="stock-card-header">
+                            <img src="https://cdn.logosear.ch/logo/amazon-2.svg" alt="Amazon Logo" class="stock-logo">
+                            <div class="stock-name"><strong>亞馬遜 (Amazon)</strong><span class="stock-ticker">AMZN</span></div>
+                        </div>
+                        <p class="stock-trait">從線上書店起家，發展為全球最大的電商平台與雲端服務供應商，以客戶至上為核心理念。</p>
+                        <div class="stock-card-details">
+                            <h4>核心領域</h4>
+                            <ul>
+                                <li>電子商務 (Amazon.com)</li>
+                                <li>雲端運算 (Amazon Web Services, AWS)</li>
+                                <li>廣告服務</li>
+                                <li>訂閱服務 (Prime)</li>
+                            </ul>
+                            <h4>主要護城河</h4>
+                            <ul>
+                                <li>成本優勢：龐大的物流網絡與採購規模。</li>
+                                <li>網路效應：電商平台的買家與賣家。</li>
+                                <li>高轉換成本：AWS 的企業客戶。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Meta Platforms -->
+                    <div class="stock-intro-card">
+                        <div class="stock-card-header">
+                            <img src="https://cdn.logosear.ch/logo/meta.svg" alt="Meta Logo" class="stock-logo">
+                            <div class="stock-name"><strong>Meta Platforms</strong><span class="stock-ticker">META</span></div>
+                        </div>
+                        <p class="stock-trait">全球最大的社交網絡帝國，擁有 Facebook、Instagram、WhatsApp 等多個超級應用，積極轉型元宇宙。</p>
+                        <div class="stock-card-details">
+                            <h4>核心領域</h4>
+                            <ul>
+                                <li>社交媒體廣告 (Facebook, Instagram)</li>
+                                <li>即時通訊 (Messenger, WhatsApp)</li>
+                                <li>元宇宙技術 (Reality Labs, Quest VR)</li>
+                            </ul>
+                            <h4>主要護城河</h4>
+                            <ul>
+                                <li>強大網路效應：無人能及的使用者規模。</li>
+                                <li>數據優勢：精準的廣告投放能力。</li>
+                                <li>無形資產：旗下各平台的品牌價值。</li>
+                            </ul>
+                        </div>
+                    </div>
+                     <!-- Broadcom -->
+                    <div class="stock-intro-card">
+                        <div class="stock-card-header">
+                            <img src="https://cdn.logosear.ch/logo/broadcom.svg" alt="Broadcom Logo" class="stock-logo">
+                            <div class="stock-name"><strong>博通 (Broadcom)</strong><span class="stock-ticker">AVGO</span></div>
+                        </div>
+                        <p class="stock-trait">全球領先的半導體與基礎設施軟體供應商，以高效的收購整合與強大的客戶關係著稱。</p>
+                        <div class="stock-card-details">
+                            <h4>核心領域</h4>
+                            <ul>
+                                <li>半導體解決方案 (網路、寬頻、無線通訊晶片)</li>
+                                <li>基礎設施軟體 (VMware 虛擬化、大型主機軟體)</li>
+                            </ul>
+                            <h4>主要護城河</h4>
+                            <ul>
+                                <li>技術領先：在特定晶片領域的設計能力。</li>
+                                <li>高轉換成本：其軟硬體產品深度嵌入客戶的關鍵業務流程。</li>
+                                <li>成本優勢：無晶圓廠模式帶來的靈活性與效率。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Eli Lilly -->
+                    <div class="stock-intro-card">
+                        <div class="stock-card-header">
+                            <img src="https://companieslogo.com/img/orig/LLY-5337374a.png?t=1632512613" alt="Eli Lilly Logo" class="stock-logo">
+                            <div class="stock-name"><strong>禮來 (Eli Lilly)</strong><span class="stock-ticker">LLY</span></div>
+                        </div>
+                        <p class="stock-trait">全球領先的製藥公司，專注於糖尿病、腫瘤、免疫學和神經科學等領域的藥物研發。</p>
+                        <div class="stock-card-details">
+                            <h4>核心領域</h4>
+                            <ul>
+                                <li>糖尿病藥物 (Mounjaro, Trulicity)</li>
+                                <li>腫瘤藥物 (Verzenio)</li>
+                                <li>免疫學藥物 (Taltz)</li>
+                                <li>阿茲海默症藥物研發</li>
+                            </ul>
+                            <h4>主要護城河</h4>
+                            <ul>
+                                <li>專利保護：核心藥品的專利期提供了定價權。</li>
+                                <li>研發能力：強大的新藥開發管線。</li>
+                                <li>法規壁壘：新藥上市需要通過嚴格且昂貴的臨床試驗。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Tesla -->
+                    <div class="stock-intro-card">
+                        <div class="stock-card-header">
+                            <img src="https://cdn.logosear.ch/logo/tesla.svg" alt="Tesla Logo" class="stock-logo">
+                            <div class="stock-name"><strong>特斯拉 (Tesla)</strong><span class="stock-ticker">TSLA</span></div>
+                        </div>
+                        <p class="stock-trait">電動汽車產業的開創者與領導者，業務涵蓋汽車、能源儲存及自動駕駛軟體。</p>
+                        <div class="stock-card-details">
+                            <h4>核心領域</h4>
+                            <ul>
+                                <li>電動汽車製造</li>
+                                <li>全自動輔助駕駛 (FSD) 軟體</li>
+                                <li>能源生產與儲存 (Solar Roof, Powerwall)</li>
+                            </ul>
+                            <h4>主要護城河</h4>
+                            <ul>
+                                <li>品牌優勢：在電動車領域擁有極高的品牌認知度。</li>
+                                <li>技術領先：在電池技術、軟體整合方面具備優勢。</li>
+                                <li>數據優勢：龐大的車隊數據用於訓練其自動駕駛系統。</li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!-- Berkshire Hathaway -->
+                    <div class="stock-intro-card">
+                        <div class="stock-card-header">
+                            <img src="https://companieslogo.com/img/orig/BRK-A-48b4855d.png?t=1633072033" alt="Berkshire Hathaway Logo" class="stock-logo">
+                            <div class="stock-name"><strong>波克夏 (Berkshire)</strong><span class="stock-ticker">BRK.B</span></div>
+                        </div>
+                        <p class="stock-trait">由華倫·巴菲特領導的多元化控股公司，以價值投資聞名，旗下擁有眾多實體企業與大量股票投資。</p>
+                        <div class="stock-card-details">
+                            <h4>核心領域</h4>
+                            <ul>
+                                <li>保險業務 (GEICO, General Re)</li>
+                                <li>鐵路運輸 (BNSF)</li>
+                                <li>公用事業與能源</li>
+                                <li>製造、服務與零售 (持有大量蘋果等公司股票)</li>
+                            </ul>
+                            <h4>主要護城河</h4>
+                            <ul>
+                                <li>多元化經營：業務分散，抗風險能力強。</li>
+                                <li>保險浮存金：提供低成本的長期可投資資金。</li>
+                                <li>品牌聲譽：巴菲特的投資哲學與信譽。</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 美股資訊管道 -->
+        <section id="indicators" class="section">
+            <div class="container">
+                <h2>觀看與查閱美股的管道</h2>
+                <div class="indicators-grid">
+                    <div class="indicator-card"><h3>綜合財經網站</h3><p class="indicator-fullname">提供即時報價、新聞、財報和圖表</p><div class="indicator-rules"><h4>推薦平台</h4><div class="rule-item"><span class="rule-condition">Yahoo Finance</span><span class="rule-result">全球最常用，資訊全面</span></div><div class="rule-item"><span class="rule-condition">Google Finance</span><span class="rule-result">介面簡潔，整合新聞</span></div><div class="rule-item"><span class="rule-condition">鉅亨網(Anue)</span><span class="rule-result">繁體中文，新聞更新快</span></div><div class="rule-item"><span class="rule-condition">MoneyDJ</span><span class="rule-result">台灣老牌，資訊豐富</span></div></div></div>
+                    <div class="indicator-card"><h3>圖表與分析工具</h3><p class="indicator-fullname">強大的技術分析圖表與選股器</p><div class="indicator-rules"><h4>推薦平台</h4><div class="rule-item"><span class="rule-condition">TradingView</span><span class="rule-result">專業圖表，社群功能強</span></div><div class="rule-item"><span class="rule-condition">Finviz</span><span class="rule-result">強大選股器，視覺化熱力圖</span></div><div class="rule-item"><span class="rule-condition">Seeking Alpha</span><span class="rule-result">深入的個股分析文章</span></div><div class="rule-item"><span class="rule-condition">財報狗</span><span class="rule-result">台灣團隊開發，數據視覺化佳</span></div></div></div>
+                    <div class="indicator-card"><h3>國際新聞媒體</h3><p class="indicator-fullname">獲取第一手全球財經動態</p><div class="indicator-rules"><h4>推薦平台</h4><div class="rule-item"><span class="rule-condition">華爾街日報 (WSJ)</span><span class="rule-result">深度報導，部分需付費</span></div><div class="rule-item"><span class="rule-condition">彭博 (Bloomberg)</span><span class="rule-result">即時新聞與數據權威</span></div><div class="rule-item"><span class="rule-condition">路透 (Reuters)</span><span class="rule-result">全球性新聞機構</span></div><div class="rule-item"><span class="rule-condition">CNBC</span><span class="rule-result">電視與網路，新聞更新快</span></div></div></div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- 注意事項 -->
+        <section id="notes" class="section">
+            <div class="container">
+                <h2>投資注意事項</h2>
+                <div class="notes-grid">
+                    <div class="note-category"><h3>風險管理</h3><ul id="risk-management-list"></ul></div>
+                    <div class="note-category"><h3>時機選擇</h3><ul id="timing-list"></ul></div>
+                    <div class="note-category"><h3>稅務規劃</h3><ul id="tax-planning-list"></ul></div>
+                    <div class="note-category"><h3>匯率考量</h3><ul id="currency-list"></ul></div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 稅務詳解 -->
+        <section id="taxation" class="section">
+            <div class="container">
+                <h2>美股稅務詳解：海內外費用與稅務</h2>
+                <p class="section-intro">投資美股的稅務比想像中簡單。身為台灣投資人（非美國稅務居民），我們主要面對「美國的股息預扣稅」與「台灣的海外所得稅」。</p>
+                
+                <div class="tax-grid">
+                    <div class="tax-card">
+                        <h3>第一層：美國政府如何課稅？</h3>
+                        <p>美國政府對外國人(NRA)的課稅原則是「屬地主義」，只針對源自美國的收入課稅。這導致了兩種截然不同的結果：</p>
+                        <ul>
+                            <li><strong><span class="tax-highlight-red">股息稅 (Dividend Tax)：</span> 需要繳納 30%</strong>
+                                <p>當美國公司發放股息時，券商會直接預先扣除30%的稅款。例如，您獲得100美元股息，實際只會入帳70美元。這是投資美股最主要的稅務成本。</p>
+                            </li>
+                            <li><strong><span class="tax-highlight-green">資本利得稅 (Capital Gains Tax)：</span> 完全豁免！</strong>
+                                <p>您買賣股票、ETF所賺取的價差，美國政府是完全「免稅」的。這是在開戶時填寫W-8 BEN表格的主要原因，證明您的外國人身份。</p>
+                            </li>
+                             <li><strong><span class="tax-highlight-red">遺產稅 (Estate Tax)：</span> 高額，需注意</strong>
+                                <p>若不幸身故，在美國的資產（股票、現金）超過6萬美元的部分，可能會被課徵高達40%的遺產稅。這是海外券商的主要風險之一，可透過資產規劃或使用複委託來應對。</p>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="tax-card">
+                        <h3>第二層：台灣政府如何課稅？</h3>
+                        <p>當您將海外的獲利（包含股息和資本利得）匯回台灣，或即使不匯回，只要有獲利事實，就需要考慮是否申報「海外所得」。</p>
+                        <ol>
+                            <li><strong>申報門檻：</strong>同一申報戶，全年度的海外所得總額超過 **新台幣100萬元**，就需要「申報」。注意，申報不等於要繳稅。</li>
+                            <li><strong>課稅門檻：</strong>申報後，海外所得會併入「個人基本所得額」。如果您的「基本所得額」總額超過 **新台幣750萬元** 的免稅額，超過的部分才需要繳納20%的稅款。</li>
+                        </ol>
+                        
+                        <h4>簡單計算範例：</h4>
+                        <p>假設一位上班族，年薪100萬台幣，今年美股操作實現了200萬台幣的資本利得。</p>
+                        <ul>
+                            <li><strong>海外所得：</strong>200萬元 > 100萬申報門檻，因此需要申報。</li>
+                            <li><strong>基本所得額：</strong>年薪100萬 + 海外所得200萬 = 300萬元。</li>
+                            <li><strong>是否課稅：</strong>由於基本所得額300萬 < 750萬課稅門檻，所以 **不需要繳納任何台灣的稅款**。</li>
+                        </ul>
+                         <p class="conclusion">結論：對於絕大多數台灣投資人來說，只要每年的海外資本利得和股息收入總和沒有達到數百萬新台幣的規模，基本上是不需要繳納台灣的海外所得稅的。</p>
+                    </div>
+                </div>
+
+                <div class="comparison-table-container tax-summary-table">
+                    <h4>海內外稅務總結</h4>
+                    <table class="comparison-table">
+                        <thead>
+                            <tr>
+                                <th>所得類型</th>
+                                <th>美國稅務 (NRA)</th>
+                                <th>台灣稅務</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>資本利得 (價差)</td>
+                                <td class="text-green"><strong>免稅</strong> (已填W-8 BEN)</td>
+                                <td>併入海外所得計算 (高免稅額)</td>
+                            </tr>
+                             <tr>
+                                <td>股息收入</td>
+                                <td class="text-red"><strong>預扣 30%</strong></td>
+                                <td>股息的70%併入海外所得計算</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 學習閃卡與測驗系統 -->
+        <section id="flashcards" class="section">
+            <div class="container">
+                <h2>學習閃卡</h2>
+                <div class="flashcard-controls"><div class="progress-info"><span>進度：<span id="card-progress">1 / 50</span></span><span>已掌握：<span id="mastered-count">0</span></span></div><div class="control-buttons"><button id="shuffle-btn" class="btn btn--secondary">隨機順序</button><button id="reset-progress-btn" class="btn btn--outline">重置進度</button></div></div>
+                <div class="flashcard-container"><div class="flashcard" id="flashcard"><div class="flashcard-front"><h3>題目</h3><p id="card-question">載入中...</p><div class="flip-hint">點擊查看答案</div></div><div class="flashcard-back"><h3>答案</h3><p id="card-answer"></p><div class="flip-hint">點擊查看題目</div></div></div></div>
+                <div class="flashcard-navigation"><button id="prev-card" class="btn btn--outline">上一題</button><div class="mastery-buttons"><button id="mark-difficult" class="btn btn--outline">標記困難</button><button id="mark-mastered" class="btn btn--primary">已掌握</button></div><button id="next-card" class="btn btn--outline">下一題</button></div>
+            </div>
+        </section>
+        <section id="quiz" class="section">
+            <div class="container">
+                <h2>測驗系統</h2>
+                <div class="quiz-start" id="quiz-start"><div class="quiz-info"><h3>準備開始測驗</h3><p>共50題選擇題，完成後可查看成績和錯題回顧</p><div class="quiz-stats" id="quiz-stats"><div class="stat-item"><span class="stat-label">最佳成績：</span><span class="stat-value" id="best-score">尚未測驗</span></div><div class="stat-item"><span class="stat-label">測驗次數：</span><span class="stat-value" id="quiz-attempts">0</span></div></div><button id="start-quiz-btn" class="btn btn--primary btn--lg">開始測驗</button></div></div>
+                <div class="quiz-container" id="quiz-container" style="display: none;"><div class="quiz-header"><div class="quiz-progress"><span>題目 <span id="current-question">1</span> / 50</span><div class="progress-bar"><div class="progress-fill" id="progress-fill"></div></div></div><div class="quiz-time"><span>用時：<span id="quiz-timer">00:00</span></span></div></div><div class="question-container"><h3 id="question-text"></h3><div class="options-container" id="options-container"></div><div class="question-feedback" id="question-feedback" style="display: none;"><div class="feedback-result"></div><div class="feedback-explanation"></div></div></div><div class="quiz-navigation"><button id="prev-question" class="btn btn--outline" disabled>上一題</button><button id="submit-answer" class="btn btn--primary" disabled>提交答案</button><button id="next-question" class="btn btn--outline" style="display: none;">下一題</button><button id="finish-quiz" class="btn btn--primary" style="display: none;">完成測驗</button></div></div>
+                <div class="quiz-results" id="quiz-results" style="display: none;"><div class="results-summary"><h3>測驗完成！</h3><div class="score-display"><div class="score-circle"><span class="score-number" id="final-score">0</span><span class="score-total">/ 50</span></div><div class="score-percentage" id="score-percentage">0%</div></div><div class="time-taken">用時：<span id="total-time">00:00</span></div></div><div class="results-actions"><button id="review-errors" class="btn btn--secondary">錯題回顧</button><button id="retake-quiz" class="btn btn--primary">重新測驗</button></div><div class="error-review" id="error-review" style="display: none;"><h4>錯題回顧</h4><div id="error-list"></div></div></div>
+            </div>
+        </section>
+    </main>
+</body>
+<script src="app.js"></script>
+</html>
