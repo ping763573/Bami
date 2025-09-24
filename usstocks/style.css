@@ -299,6 +299,13 @@ p { margin: 0; }
     font-size: var(--font-size-sm);
 }
 
+/* Visitor Counter */
+.visitor-counter {
+    text-align: center;
+    margin-top: var(--space-16);
+    padding-bottom: var(--space-8);
+}
+
 /* Investment Channels Section */
 .channels-grid {
     display: grid;
